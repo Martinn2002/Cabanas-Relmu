@@ -1,0 +1,18 @@
+@use 'variables';
+
+@mixin boton_diseno {
+    background-color: variables.$color-acento-cromatico;
+    color: variables.$color-background;
+    border: none;
+    border-radius: 5px;
+    padding: clamp(0.625rem, 1vw, 0.875rem) clamp(1rem, 2vw, 1.5rem);
+    font-size: variables.$tamano-h5;
+    font-family: "Playfair", serif;
+    font-weight: 700;
+
+    &:hover {
+        background-color: variables.$color-cafe-oscuro;
+        color: variables.$color-background;
+        cursor: pointer;
+    }
+}

@@ -1,5 +1,10 @@
 @use 'variables';
+@use 'mixins';
 
 body{
     background-color: variables.$color-background;
+}
+
+button{
+    @include mixins.boton_diseno;
 }

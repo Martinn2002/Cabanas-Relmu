@@ -2,3 +2,21 @@ $color-background: #F3E9DC;
 $color-acento-cromatico: #C08552;
 $color-oscuro: #1E0F0B;
 $color-cafe-oscuro:#5E3023;
+
+$tamano-h1: clamp(2rem, 4vw, 3rem);
+
+$tamano-h2: clamp(1.75rem, 3.2vw, 2.5rem);
+
+$tamano-h3: clamp(1.5rem, 2.6vw, 2.125rem);
+
+$tamano-h4: clamp(1.25rem, 2vw, 1.75rem);
+
+$tamano-h5: clamp(1.125rem, 1.5vw, 1.5rem);
+
+$tamano-h6: clamp(1rem, 1.2vw, 1.25rem);
+
+$tamano-p: clamp(0.875rem, 0.5vw + 0.75rem, 1rem);
+
+$tamano-p-mediano: clamp(0.75rem, 0.3vw + 0.65rem, 0.8125rem);
+
+$tamano-p-chico: 0.625rem;

@@ -1,3 +1,19 @@
 body {
   background-color: #F3E9DC;
+}
+
+button {
+  background-color: #C08552;
+  color: #F3E9DC;
+  border: none;
+  border-radius: 5px;
+  padding: clamp(0.625rem, 1vw, 0.875rem) clamp(1rem, 2vw, 1.5rem);
+  font-size: clamp(1.125rem, 1.5vw, 1.5rem);
+  font-family: "Playfair", serif;
+  font-weight: 700;
+}
+button:hover {
+  background-color: #5E3023;
+  color: #F3E9DC;
+  cursor: pointer;
 }/*# sourceMappingURL=estilo.css.map */
