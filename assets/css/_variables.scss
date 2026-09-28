@@ -1,7 +1,7 @@
 $color-background: #F3E9DC;
 $color-acento-cromatico: #C08552;
 $color-oscuro: #1E0F0B;
-$color-cafe-oscuro:#5E3023;
+$color-cafe-oscuro: #5E3023;
 
 $tamano-h1: clamp(2rem, 4vw, 3rem);
 
@@ -21,48 +21,49 @@ $tamano-p-mediano: clamp(0.75rem, 0.3vw + 0.65rem, 0.8125rem);
 
 $tamano-p-chico: 0.625rem;
 
-h1{
+h1 {
     font-size: $tamano-h1;
     font-family: "Playfair", serif;
     font-weight: 700;
 }
 
-h2{
+h2 {
     font-size: $tamano-h2;
     font-family: "Playfair", serif;
     font-weight: 700;
     color: $color-cafe-oscuro;
 }
 
-h3{
+h3 {
     font-size: $tamano-h3;
     font-family: "Playfair", serif;
 }
 
-h4{
+h4 {
     font-size: $tamano-h4;
     font-family: "Playfair", serif;
+    color: $color-cafe-oscuro !important;
 }
 
-h5{
+h5 {
     font-size: $tamano-h5;
     font-family: "Playfair", serif;
 }
 
-h6{
+h6 {
     font-size: $tamano-h6;
     font-family: "Playfair", serif;
 }
 
-p{
+p {
     font-size: $tamano-p;
     font-family: "DM Sans", sans-serif;
 }
 
-.p-mediano{
+.p-mediano {
     font-size: $tamano-p-mediano;
 }
 
-.p-chico{
+.p-chico {
     font-size: $tamano-p-chico;
 }

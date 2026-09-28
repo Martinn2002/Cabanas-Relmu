@@ -220,3 +220,27 @@ nav {
         right: 1rem;
     }
 }
+
+.imagen-tarjeta {
+    .icono-circular {
+        position: absolute;
+        bottom: 28px;
+        left: 50%;
+        transform: translate(-50%, 50%);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: variables.$color-cafe-oscuro;
+        border: 2px solid variables.$color-background;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            width: 55%;
+            height: 55%;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+    }
+}
