@@ -20,3 +20,49 @@ $tamano-p: clamp(0.875rem, 0.5vw + 0.75rem, 1rem);
 $tamano-p-mediano: clamp(0.75rem, 0.3vw + 0.65rem, 0.8125rem);
 
 $tamano-p-chico: 0.625rem;
+
+h1{
+    font-size: $tamano-h1;
+    font-family: "Playfair", serif;
+    font-weight: 700;
+}
+
+h2{
+    font-size: $tamano-h2;
+    font-family: "Playfair", serif;
+    font-weight: 700;
+    color: $color-cafe-oscuro;
+}
+
+h3{
+    font-size: $tamano-h3;
+    font-family: "Playfair", serif;
+}
+
+h4{
+    font-size: $tamano-h4;
+    font-family: "Playfair", serif;
+}
+
+h5{
+    font-size: $tamano-h5;
+    font-family: "Playfair", serif;
+}
+
+h6{
+    font-size: $tamano-h6;
+    font-family: "Playfair", serif;
+}
+
+p{
+    font-size: $tamano-p;
+    font-family: "DM Sans", sans-serif;
+}
+
+.p-mediano{
+    font-size: $tamano-p-mediano;
+}
+
+.p-chico{
+    font-size: $tamano-p-chico;
+}

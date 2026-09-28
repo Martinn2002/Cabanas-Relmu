@@ -1,3 +1,49 @@
+h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-family: "Playfair", serif;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  font-family: "Playfair", serif;
+  font-weight: 700;
+  color: #5E3023;
+}
+
+h3 {
+  font-size: clamp(1.5rem, 2.6vw, 2.125rem);
+  font-family: "Playfair", serif;
+}
+
+h4 {
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  font-family: "Playfair", serif;
+}
+
+h5 {
+  font-size: clamp(1.125rem, 1.5vw, 1.5rem);
+  font-family: "Playfair", serif;
+}
+
+h6 {
+  font-size: clamp(1rem, 1.2vw, 1.25rem);
+  font-family: "Playfair", serif;
+}
+
+p {
+  font-size: clamp(0.875rem, 0.5vw + 0.75rem, 1rem);
+  font-family: "DM Sans", sans-serif;
+}
+
+.p-mediano {
+  font-size: clamp(0.75rem, 0.3vw + 0.65rem, 0.8125rem);
+}
+
+.p-chico {
+  font-size: 0.625rem;
+}
+
 body {
   background-color: #F3E9DC;
 }
@@ -8,12 +54,175 @@ button {
   border: none;
   border-radius: 5px;
   padding: clamp(0.625rem, 1vw, 0.875rem) clamp(1rem, 2vw, 1.5rem);
-  font-size: clamp(1.125rem, 1.5vw, 1.5rem);
+  font-size: clamp(1rem, 1.2vw, 1.25rem);
   font-family: "Playfair", serif;
   font-weight: 700;
 }
 button:hover {
+  transition: 300ms;
   background-color: #5E3023;
   color: #F3E9DC;
   cursor: pointer;
+}
+
+.bg-body-tertiary {
+  background-color: #F3E9DC !important;
+}
+
+nav {
+  position: relative;
+  background-color: #F3E9DC !important;
+}
+nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../img/madera-clara.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3;
+  z-index: 0;
+}
+nav > * {
+  position: relative;
+  z-index: 1;
+}
+
+.navbar-nav {
+  font-family: "Playfair", serif;
+  font-weight: 700;
+}
+.navbar-nav a {
+  color: #5E3023;
+  font-size: clamp(1rem, 1.2vw, 1.25rem);
+  line-height: 1.5;
+}
+.navbar-nav a:hover {
+  color: #C08552;
+}
+.navbar-nav .active {
+  color: #C08552 !important;
+}
+
+.botones-hero-secundarios {
+  border: 1px solid #F3E9DC;
+  color: #F3E9DC;
+  background-color: transparent;
+}
+
+.imagen-banner {
+  position: relative;
+}
+.imagen-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(30, 15, 11, 0.75);
+  z-index: 1;
+  pointer-events: none;
+}
+.imagen-banner .carousel-item {
+  position: relative;
+  z-index: 0;
+}
+
+.hero {
+  position: relative;
+}
+.hero img {
+  height: 90dvh;
+}
+.hero h2 {
+  color: #F3E9DC;
+}
+.hero .texto-hero {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  pointer-events: none;
+}
+.hero .texto-hero h1,
+.hero .texto-hero h2,
+.hero .texto-hero h3 {
+  margin: 0.25rem 0;
+}
+.hero .texto-hero .botones {
+  pointer-events: auto;
+  margin-bottom: 0;
+  padding: 0;
+}
+.hero .texto-hero {
+  font-family: "Playfair", serif !important;
+  color: #F3E9DC;
+}
+.hero .texto-hero h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+}
+.hero .texto-hero h3 {
+  font-size: clamp(1.5rem, 2.6vw, 2.125rem);
+  color: #C08552;
+}
+.hero .texto-hero h2 {
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+}
+
+.hero .carousel .carousel-indicators {
+  z-index: 3;
+}
+.hero .carousel .carousel-indicators button {
+  box-sizing: border-box;
+  width: 14px;
+  height: 14px;
+  padding: 0;
+  margin: 0 6px;
+  border: 2px solid #F3E9DC;
+  border-radius: 50%;
+  background-color: transparent;
+  background-clip: border-box;
+  opacity: 1;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.hero .carousel .carousel-indicators button.active {
+  background-color: #F3E9DC;
+  transform: scale(1.25);
+}
+.hero .carousel .carousel-control-prev,
+.hero .carousel .carousel-control-next {
+  z-index: 3;
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border-radius: 50%;
+  background-color: rgba(30, 15, 11, 0.6);
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+.hero .carousel .carousel-control-prev:hover,
+.hero .carousel .carousel-control-next:hover {
+  background-color: rgba(30, 15, 11, 0.9);
+}
+.hero .carousel .carousel-control-prev .carousel-control-prev-icon,
+.hero .carousel .carousel-control-prev .carousel-control-next-icon,
+.hero .carousel .carousel-control-next .carousel-control-prev-icon,
+.hero .carousel .carousel-control-next .carousel-control-next-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.hero .carousel .carousel-control-prev {
+  left: 1rem;
+}
+.hero .carousel .carousel-control-next {
+  right: 1rem;
 }/*# sourceMappingURL=estilo.css.map */
