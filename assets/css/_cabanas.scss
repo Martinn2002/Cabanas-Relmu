@@ -1,0 +1,82 @@
+@use 'variables';
+@use 'mixins';
+
+// ============================================================
+// CABAÑAS - Tarjetas, badges, tabla de tarifas
+// ============================================================
+
+.span-precio {
+    color: variables.$color-cafe-oscuro;
+    font-weight: 700;
+}
+
+.cabana-img {
+    position: relative;
+    @include mixins.tarjeta_elevacion;
+    border-radius: 12px;
+    overflow: hidden;
+
+    .badge-capacidad {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        border-radius: 6px;
+        background-color: variables.$color-cafe-oscuro;
+        color: variables.$color-background;
+        font-size: variables.$tamano-p-mediano;
+        font-weight: 500;
+
+        i {
+            font-size: variables.$tamano-p;
+        }
+    }
+}
+
+.nota-tarifa p {
+    font-size: variables.$tamano-p-mediano;
+}
+
+// Tabla de valores por noche
+table {
+    text-align: center;
+    border: 1px solid variables.$color-acento-cromatico !important;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th {
+    background-color: variables.$color-acento-cromatico !important;
+    font-family: "Playfair", serif;
+    color: variables.$color-background !important;
+    font-size: variables.$tamano-h3 !important;
+}
+
+td {
+    background-color: variables.$color-background !important;
+    border-bottom: 1px solid variables.$color-acento-cromatico !important;
+    transition: background-color 0.2s ease;
+}
+
+tbody tr:hover td {
+    background-color: rgba(192, 133, 82, 0.1) !important;
+}
+
+// Fondo de la sección con textura
+.cabanas {
+    position: relative;
+    background-color: variables.$color-background;
+
+    &::before {
+        @include mixins.capa_textura("madera-clara.jpg", 0.3);
+    }
+
+    > * {
+        position: relative;
+        z-index: 1;
+    }
+}

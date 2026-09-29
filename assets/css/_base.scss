@@ -1,0 +1,33 @@
+@use 'variables';
+@use 'mixins';
+
+// ============================================================
+// BASE - Reset ligero y estilos globales
+// ============================================================
+
+// Scroll suave al hacer clic en enlaces ancla
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px; // compensa el navbar fijo
+}
+
+body {
+    background-color: variables.$color-background;
+}
+
+button {
+    @include mixins.boton_diseno;
+}
+
+.bg-body-tertiary {
+    background-color: variables.$color-background !important;
+}
+
+// Clases de animación reveal (controladas por IntersectionObserver)
+.reveal {
+    @include mixins.reveal-init;
+}
+
+.reveal.visible {
+    @include mixins.reveal-visible;
+}

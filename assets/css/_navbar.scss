@@ -1,0 +1,78 @@
+@use 'variables';
+@use 'mixins';
+
+// ============================================================
+// NAVBAR
+// ============================================================
+// Navbar sticky con textura de madera clara al 30% de opacidad.
+// Al hacer scroll se añade sombra y se vuelve más opaco.
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    background-color: variables.$color-background !important;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+
+    &::before {
+        @include mixins.capa_textura("madera-clara.jpg", 0.3);
+    }
+
+    > * {
+        position: relative;
+        z-index: 1;
+    }
+
+    // Estado "scrolled": navbar más sólido con sombra
+    &.scrolled {
+        background-color: variables.$color-background !important;
+        box-shadow: 0 2px 20px rgba(94, 48, 35, 0.15);
+
+        &::before {
+            opacity: 0.15;
+        }
+    }
+}
+
+.navbar-nav {
+    font-family: "Playfair", serif;
+    font-weight: 700;
+
+    a {
+        color: variables.$color-cafe-oscuro;
+        font-size: variables.$tamano-h6;
+        line-height: 1.5;
+        position: relative;
+        transition: color 0.25s ease;
+
+        // Subrayado animado al hover
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: variables.$color-acento-cromatico;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+
+        &:hover {
+            color: variables.$color-acento-cromatico;
+
+            &::after {
+                width: 100%;
+                left: 0;
+            }
+        }
+    }
+
+    .active {
+        color: variables.$color-acento-cromatico !important;
+
+        &::after {
+            width: 100%;
+            left: 0;
+        }
+    }
+}

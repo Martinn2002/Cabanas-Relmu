@@ -1,25 +1,34 @@
-$color-background: #F3E9DC;
-$color-acento-cromatico: #C08552;
-$color-oscuro: #1E0F0B;
-$color-cafe-oscuro: #5E3023;
+// ============================================================
+// VARIABLES DEL PROYECTO - Cabañas Relmu
+// ============================================================
+// Paleta de colores y tamaños de tipografía reutilizables
+// en todo el sitio. Los tamaños usan clamp() para que escalen
+// de forma fluida entre móviles y escritorio.
 
+// ------ Paleta de colores ------
+$color-background: #F3E9DC;        // Fondo claro (crema)
+$color-acento-cromatico: #C08552;  // Acento cálido (cobre)
+$color-oscuro: #1E0F0B;            // Texto oscuro casi negro
+$color-cafe-oscuro: #5E3023;       // Café oscuro para fondos
+
+// ------ Tamaños de tipografía (fluidos con clamp) ------
 $tamano-h1: clamp(2rem, 4vw, 3rem);
-
 $tamano-h2: clamp(1.75rem, 3.2vw, 2.5rem);
-
 $tamano-h3: clamp(1.5rem, 2.6vw, 2.125rem);
-
 $tamano-h4: clamp(1.25rem, 2vw, 1.75rem);
-
 $tamano-h5: clamp(1.125rem, 1.5vw, 1.5rem);
-
 $tamano-h6: clamp(1rem, 1.2vw, 1.25rem);
 
 $tamano-p: clamp(0.875rem, 0.5vw + 0.75rem, 1rem);
-
 $tamano-p-mediano: clamp(0.75rem, 0.3vw + 0.65rem, 0.8125rem);
-
 $tamano-p-chico: 0.625rem;
+
+// ============================================================
+// JERARQUÍA DE ENCABEZADOS
+// ============================================================
+// Se define un estilo base para cada nivel de encabezado,
+// manteniendo la familia tipográfica "Playfair" (serif) y
+// tamaños fluidos. Los párrafos usan "DM Sans" (sans-serif).
 
 h1 {
     font-size: $tamano-h1;

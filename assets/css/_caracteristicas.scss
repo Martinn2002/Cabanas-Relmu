@@ -1,0 +1,45 @@
+@use 'variables';
+@use 'mixins';
+
+// ============================================================
+// CARACTERÍSTICAS - Tarjetas con ícono circular
+// ============================================================
+
+.imagen-tarjeta {
+    @include mixins.tarjeta_elevacion;
+    border-radius: 12px;
+    overflow: hidden;
+
+    .icono-circular {
+        position: absolute;
+        bottom: 28px;
+        left: 50%;
+        transform: translate(-50%, 50%);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: variables.$color-cafe-oscuro;
+        border: 2px solid variables.$color-background;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+
+        img {
+            width: 55%;
+            height: 55%;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+    }
+
+    &:hover .icono-circular {
+        transform: translate(-50%, 50%) scale(1.15);
+        background-color: variables.$color-acento-cromatico;
+    }
+}
+
+// Contenedor de la tarjeta con padding superior para el ícono
+.caracteristicas .col-md-3 {
+    padding-top: 1.5rem; // espacio para el ícono circular que sobresale
+}

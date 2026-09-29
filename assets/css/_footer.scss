@@ -1,0 +1,80 @@
+@use 'variables';
+@use 'mixins';
+
+// ============================================================
+// FOOTER
+// ============================================================
+
+footer {
+    position: relative;
+    overflow: hidden;
+    padding: 3rem 1rem 2rem;
+    color: variables.$color-background;
+
+    h2, h5 {
+        color: variables.$color-background;
+    }
+
+    h5 {
+        margin-bottom: 1rem;
+        position: relative;
+        padding-bottom: 0.5rem;
+
+        // Línea decorativa bajo los títulos del footer
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: variables.$color-acento-cromatico;
+        }
+    }
+
+    &::before {
+        @include mixins.capa_textura("madera-oscura.jpg", 1);
+    }
+
+    &::after {
+        @include mixins.capa_color(variables.$color-cafe-oscuro, 0.80);
+    }
+
+    > * {
+        position: relative;
+        z-index: 2;
+    }
+
+    a {
+        color: variables.$color-acento-cromatico;
+        text-decoration: none;
+        transition: color 0.25s ease, padding-left 0.25s ease;
+
+        &:hover {
+            color: variables.$color-background;
+            padding-left: 4px;
+        }
+    }
+
+    .bi {
+        color: variables.$color-acento-cromatico;
+    }
+
+    // Línea de separación superior
+    .container {
+        position: relative;
+
+        // Copyright al fondo
+        &::after {
+            content: "© 2024 Cabañas Relmu. Todos los derechos reservados.";
+            display: block;
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(243, 233, 220, 0.2);
+            font-size: variables.$tamano-p-mediano;
+            font-family: "DM Sans", sans-serif;
+            opacity: 0.7;
+        }
+    }
+}

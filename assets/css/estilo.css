@@ -1,3 +1,4 @@
+@charset "UTF-8";
 h1 {
   font-size: clamp(2rem, 4vw, 3rem);
   font-family: "Playfair", serif;
@@ -45,40 +46,64 @@ p {
   font-size: 0.625rem;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
 body {
   background-color: #F3E9DC;
 }
 
 button {
-  background-color: #C08552;
-  color: #F3E9DC;
-  border: none;
-  border-radius: 5px;
-  padding: clamp(0.625rem, 1vw, 0.875rem) clamp(1rem, 2vw, 1.5rem);
-  font-size: clamp(1rem, 1.2vw, 1.25rem);
-  font-family: "Playfair", serif;
-  font-weight: 700;
-}
-button:hover {
-  transition: 300ms;
   background-color: #5E3023;
   color: #F3E9DC;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6em 1.5em;
+  font-family: "Playfair", serif;
+  font-size: clamp(0.875rem, 0.5vw + 0.75rem, 1rem);
+  font-weight: 500;
   cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.15s ease, box-shadow 0.25s ease;
+}
+button:hover {
+  background-color: #C08552;
+  color: #F3E9DC;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(94, 48, 35, 0.3);
+}
+button:active {
+  transform: translateY(0);
 }
 
 .bg-body-tertiary {
   background-color: #F3E9DC !important;
 }
 
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 nav {
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 1030;
   background-color: #F3E9DC !important;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
 }
 nav::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("../img/madera-clara.jpg");
+  background-image: url("/assets/img/madera-clara.jpg");
   background-size: cover;
   background-position: center;
   opacity: 0.3;
@@ -87,6 +112,13 @@ nav::before {
 nav > * {
   position: relative;
   z-index: 1;
+}
+nav.scrolled {
+  background-color: #F3E9DC !important;
+  box-shadow: 0 2px 20px rgba(94, 48, 35, 0.15);
+}
+nav.scrolled::before {
+  opacity: 0.15;
 }
 
 .navbar-nav {
@@ -97,18 +129,42 @@ nav > * {
   color: #5E3023;
   font-size: clamp(1rem, 1.2vw, 1.25rem);
   line-height: 1.5;
+  position: relative;
+  transition: color 0.25s ease;
+}
+.navbar-nav a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #C08552;
+  transition: width 0.3s ease, left 0.3s ease;
 }
 .navbar-nav a:hover {
   color: #C08552;
 }
+.navbar-nav a:hover::after {
+  width: 100%;
+  left: 0;
+}
 .navbar-nav .active {
   color: #C08552 !important;
+}
+.navbar-nav .active::after {
+  width: 100%;
+  left: 0;
 }
 
 .botones-hero-secundarios {
   border: 1px solid #F3E9DC;
   color: #F3E9DC;
   background-color: transparent;
+}
+.botones-hero-secundarios:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
 }
 
 .imagen-banner {
@@ -132,9 +188,8 @@ nav > * {
 }
 .hero img {
   height: 90dvh;
-}
-.hero h2 {
-  color: #F3E9DC;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .hero .texto-hero {
   position: absolute;
@@ -147,30 +202,47 @@ nav > * {
   color: #fff;
   pointer-events: none;
   font-family: "Playfair", serif !important;
+  padding: 1rem;
 }
-.hero .texto-hero h1,
-.hero .texto-hero h2,
-.hero .texto-hero h3 {
+.hero .texto-hero h1, .hero .texto-hero h2, .hero .texto-hero h3 {
   margin: 0.25rem 0;
 }
 .hero .texto-hero h1 {
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
+  letter-spacing: 0.05em;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+  animation: heroFadeIn 1s ease forwards;
 }
 .hero .texto-hero h2 {
   font-size: clamp(1.75rem, 3.2vw, 2.5rem);
   color: #F3E9DC;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  animation: heroFadeIn 1s ease 0.2s both;
 }
 .hero .texto-hero h3 {
   font-size: clamp(1.5rem, 2.6vw, 2.125rem);
   color: #C08552;
+  animation: heroFadeIn 1s ease 0.4s both;
 }
 .hero .texto-hero .botones {
   pointer-events: auto;
   margin-bottom: 0;
   padding: 0;
+  flex-wrap: wrap;
+  animation: heroFadeIn 1s ease 0.6s both;
 }
 
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 .hero .carousel .carousel-indicators {
   z-index: 3;
 }
@@ -226,6 +298,17 @@ nav > * {
   right: 1rem;
 }
 
+.imagen-tarjeta {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.imagen-tarjeta:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(94, 48, 35, 0.2);
+}
+.imagen-tarjeta {
+  border-radius: 12px;
+  overflow: hidden;
+}
 .imagen-tarjeta .icono-circular {
   position: absolute;
   bottom: 28px;
@@ -239,6 +322,7 @@ nav > * {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 .imagen-tarjeta .icono-circular img {
   width: 55%;
@@ -246,6 +330,14 @@ nav > * {
   -o-object-fit: contain;
      object-fit: contain;
   filter: brightness(0) invert(1);
+}
+.imagen-tarjeta:hover .icono-circular {
+  transform: translate(-50%, 50%) scale(1.15);
+  background-color: #C08552;
+}
+
+.caracteristicas .col-md-3 {
+  padding-top: 1.5rem;
 }
 
 .span-precio {
@@ -255,6 +347,15 @@ nav > * {
 
 .cabana-img {
   position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.cabana-img:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(94, 48, 35, 0.2);
+}
+.cabana-img {
+  border-radius: 12px;
+  overflow: hidden;
 }
 .cabana-img .badge-capacidad {
   position: absolute;
@@ -282,6 +383,8 @@ nav > * {
 table {
   text-align: center;
   border: 1px solid #C08552 !important;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 th {
@@ -294,6 +397,11 @@ th {
 td {
   background-color: #F3E9DC !important;
   border-bottom: 1px solid #C08552 !important;
+  transition: background-color 0.2s ease;
+}
+
+tbody tr:hover td {
+  background-color: rgba(192, 133, 82, 0.1) !important;
 }
 
 .cabanas {
@@ -304,7 +412,7 @@ td {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("../img/madera-clara.jpg");
+  background-image: url("/assets/img/madera-clara.jpg");
   background-size: cover;
   background-position: center;
   opacity: 0.3;
@@ -330,6 +438,10 @@ td {
   overflow: hidden;
   padding: 2rem;
   color: #F3E9DC;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .ubicacion-texto h2 {
   color: #F3E9DC;
@@ -338,9 +450,10 @@ td {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("../img/madera-oscura.jpg");
+  background-image: url("/assets/img/madera-oscura.jpg");
   background-size: cover;
   background-position: center;
+  opacity: 1;
   z-index: 0;
 }
 .ubicacion-texto::after {
@@ -355,6 +468,20 @@ td {
   position: relative;
   z-index: 2;
 }
+.ubicacion-texto iframe {
+  min-height: 400px;
+  height: 100%;
+}
+
+.ubicacion .col-md-6:last-child {
+  display: flex;
+}
+
+.ubicacion iframe {
+  width: 100%;
+  border: 0;
+  flex: 1;
+}
 
 .botones-atractivos .apagado {
   color: #1E0F0B;
@@ -364,17 +491,32 @@ td {
 .botones-atractivos .apagado:hover {
   color: #F3E9DC;
   background-color: #5E3023;
-  border: none;
+  border: 1px solid #5E3023;
+}
+
+.atractivos ul li {
+  transition: transform 0.3s ease;
+}
+.atractivos ul li:hover {
+  transform: translateY(-6px);
+}
+.atractivos ul li img {
+  border-radius: 12px;
+  transition: box-shadow 0.3s ease;
+}
+.atractivos ul li:hover img {
+  box-shadow: 0 8px 24px rgba(94, 48, 35, 0.25);
 }
 
 .banner-final {
   position: relative;
   overflow: hidden;
   color: #F3E9DC;
-  padding: 2rem 0;
-  background-image: url("../img/banner final.png");
+  padding: 4rem 1rem;
+  background-image: url("/assets/img/banner final.png");
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
 }
 .banner-final::before {
   content: "";
@@ -397,19 +539,34 @@ td {
 footer {
   position: relative;
   overflow: hidden;
-  padding: 2rem;
+  padding: 3rem 1rem 2rem;
   color: #F3E9DC;
 }
-footer h2 {
+footer h2, footer h5 {
   color: #F3E9DC;
+}
+footer h5 {
+  margin-bottom: 1rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+footer h5::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background-color: #C08552;
 }
 footer::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("../img/madera-oscura.jpg");
+  background-image: url("/assets/img/madera-oscura.jpg");
   background-size: cover;
   background-position: center;
+  opacity: 1;
   z-index: 0;
 }
 footer::after {
@@ -427,10 +584,90 @@ footer > * {
 footer a {
   color: #C08552;
   text-decoration: none;
+  transition: color 0.25s ease, padding-left 0.25s ease;
 }
 footer a:hover {
   color: #F3E9DC;
+  padding-left: 4px;
 }
 footer .bi {
   color: #C08552;
+}
+footer .container {
+  position: relative;
+}
+footer .container::after {
+  content: "© 2024 Cabañas Relmu. Todos los derechos reservados.";
+  display: block;
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(243, 233, 220, 0.2);
+  font-size: clamp(0.75rem, 0.3vw + 0.65rem, 0.8125rem);
+  font-family: "DM Sans", sans-serif;
+  opacity: 0.7;
+}
+
+@media (max-width: 575px) {
+  .hero img {
+    height: 70dvh;
+  }
+  .hero .texto-hero .botones {
+    flex-direction: column;
+    gap: 0.75rem !important;
+  }
+  .ubicacion-texto {
+    padding: 1.5rem 1rem;
+  }
+  .cabanas .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .banner-final {
+    background-attachment: scroll;
+  }
+}
+@media (max-width: 767px) {
+  .caracteristicas .col-md-3 {
+    margin-bottom: 2rem;
+  }
+  .cabanas .col-md-4 {
+    margin-bottom: 2rem;
+  }
+  .atractivos ul {
+    overflow-x: auto;
+    flex-wrap: nowrap !important;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 1rem;
+  }
+  .atractivos ul li {
+    flex: 0 0 auto;
+    min-width: 150px;
+  }
+  .banner-final {
+    background-attachment: scroll;
+  }
+}
+@media (max-width: 991px) {
+  .navbar-nav .nav-item:last-child {
+    margin-top: 0.5rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .hero .texto-hero h1,
+  .hero .texto-hero h2,
+  .hero .texto-hero h3,
+  .hero .texto-hero .botones {
+    animation: none !important;
+  }
+  .banner-final {
+    background-attachment: scroll;
+  }
 }/*# sourceMappingURL=estilo.css.map */

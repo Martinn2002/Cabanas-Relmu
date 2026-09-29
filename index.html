@@ -5,37 +5,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cabañas Relmu</title>
+
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/estilo.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Tipografías: Playfair (serif para títulos) y DM Sans (sans-serif para texto) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap"
         rel="stylesheet">
+
+    <!-- Hoja de estilos principal (SCSS compilado por Vite) -->
+    <link rel="stylesheet" href="assets/css/estilo.css">
+  <meta property="og:image" content="https://bolt.new/static/og_default.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://bolt.new/static/og_default.png">
 </head>
 
 <body>
+
+    <!-- ============================================================
+         HEADER / NAVBAR
+         ============================================================
+         Navegación principal con logo a la izquierda y enlaces
+         a la derecha. En móvil se colapsa con botón hamburguesa. -->
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid px-5">
+            <div class="container-fluid px-3 px-lg-5">
 
                 <!-- Logo a la izquierda -->
                 <a class="navbar-brand" href="index.html">
                     <img src="assets/img/logo relmu.webp" width="auto" height="50" alt="Logo Relmu">
                 </a>
 
-                <!-- Botón menú móvil -->
+                <!-- Botón menú móvil (hamburguesa) -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Abrir menú">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <!-- Links a la derecha -->
+                <!-- Links de navegación a la derecha -->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 align-items-center gap-3  mb-lg-0">
+                    <ul class="navbar-nav ms-auto mb-2 align-items-center gap-3 mb-lg-0">
 
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="index.html">
@@ -68,9 +85,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <button>
-                                Reservar
-                            </button>
+                            <button>Reservar</button>
                         </li>
 
                     </ul>
@@ -79,9 +94,18 @@
             </div>
         </nav>
     </header>
-    <main>
-        <div class="hero position-relative">
 
+    <main>
+
+        <!-- ============================================================
+             SECCIÓN HERO (banner + carrusel)
+             ============================================================
+             Carrusel de imágenes de fondo con texto superpuesto
+             centrado. Incluye botones de acción (Reservar, Ver Cabañas,
+             Ubicación). El overlay oscuro del SCSS mejora la legibilidad. -->
+        <section class="hero position-relative">
+
+            <!-- Texto superpuesto sobre el carrusel -->
             <div class="texto-hero container-fluid text-center">
                 <h3>Sector Lluncura, Panguipulli · Región de Los Ríos</h3>
                 <h1>CENTRO VACACIONAL RELMU</h1>
@@ -94,8 +118,10 @@
                 </ul>
             </div>
 
+            <!-- Carrusel Bootstrap con 3 slides (misma imagen placeholder) -->
             <div id="hero" class="carousel slide">
 
+                <!-- Indicadores (puntitos inferiores) -->
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#hero" data-bs-slide-to="0" class="active" aria-current="true"
                         aria-label="Slide 1"></button>
@@ -103,6 +129,7 @@
                     <button type="button" data-bs-target="#hero" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
 
+                <!-- Slides del carrusel -->
                 <div class="carousel-inner imagen-banner">
                     <div class="carousel-item active">
                         <img src="assets/img/banner.png" class="d-block w-100" alt="Centro Vacacional Relmu">
@@ -115,24 +142,34 @@
                     </div>
                 </div>
 
+                <!-- Flechas de navegación del carrusel -->
                 <button class="carousel-control-prev" type="button" data-bs-target="#hero" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
+                    <span class="visually-hidden">Anterior</span>
                 </button>
                 <button class="carousel-control-next" type="button" data-bs-target="#hero" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
+                    <span class="visually-hidden">Siguiente</span>
                 </button>
             </div>
-        </div>
-        <div class="caracteristicas mt-5 container text-center">
+        </section>
+
+        <!-- ============================================================
+             SECCIÓN CARACTERÍSTICAS
+             ============================================================
+             Tarjetas con ícono circular que muestran las comodidades
+             de las cabañas. 4 columnas en escritorio, se apilan en
+             móvil con separación vertical. -->
+        <section class="caracteristicas mt-5 container text-center reveal">
             <div class="row">
                 <h2>Una Estadía Para Disfrutar</h2>
                 <h3>Espacios pensados para descansar, compartir y disfrutar de tu estadía con comodidad, ya sea en
                     pareja, en familia o junto a un grupo de amigos.</h3>
             </div>
-            <div class="row mt-4">
-                <div class="col-md-3">
+            <div class="row mt-4 g-4">
+
+                <!-- Tarjeta: Cocina equipada -->
+                <div class="col-md-3 col-sm-6">
                     <div class="imagen-tarjeta position-relative">
                         <img src="assets/img/cocina.png" class="d-block w-100" alt="Cocina equipada">
                         <div class="icono-circular">
@@ -142,9 +179,11 @@
                     <h4>Cocina equipada</h4>
                     <p>Cocina americana para preparar y compartir tus comidas</p>
                 </div>
-                <div class="col-md-3">
+
+                <!-- Tarjeta: TV Cable -->
+                <div class="col-md-3 col-sm-6">
                     <div class="imagen-tarjeta position-relative">
-                        <img src="assets/img/tv-cable.png" class="d-block w-100" alt="...">
+                        <img src="assets/img/tv-cable.png" class="d-block w-100" alt="TV Cable">
                         <div class="icono-circular">
                             <img src="assets/img/television(1).png" alt="">
                         </div>
@@ -152,9 +191,11 @@
                     <h4>TV Cable</h4>
                     <p>Para relajarte y disfrutar dentro de la cabaña</p>
                 </div>
-                <div class="col-md-3">
+
+                <!-- Tarjeta: Terraza -->
+                <div class="col-md-3 col-sm-6">
                     <div class="imagen-tarjeta position-relative">
-                        <img src="assets/img/terraza.png" class="d-block w-100" alt="...">
+                        <img src="assets/img/terraza.png" class="d-block w-100" alt="Terraza">
                         <div class="icono-circular">
                             <img src="assets/img/barbecue.png" alt="">
                         </div>
@@ -162,25 +203,40 @@
                     <h4>Terraza</h4>
                     <p>Un espacio para disfrutar al aire libre y compartir de una buena comida</p>
                 </div>
-                <div class="col-md-3">
+
+                <!-- Tarjeta: Baño -->
+                <div class="col-md-3 col-sm-6">
                     <div class="imagen-tarjeta position-relative">
-                        <img src="assets/img/bano.png" class="d-block w-100" alt="...">
+                        <img src="assets/img/bano.png" class="d-block w-100" alt="Baño equipado">
                         <div class="icono-circular">
-                            <img src="assets/img/shower.png " alt="">
+                            <img src="assets/img/shower.png" alt="">
                         </div>
                     </div>
                     <h4>Baño</h4>
                     <p>Espacios equipados para mayor comodidad durante tu estadía</p>
                 </div>
             </div>
-        </div>
-        <div id="cabanas" class="cabanas mt-5 pt-5 pb-5">
+        </section>
+
+        <!-- ============================================================
+             SECCIÓN CABAÑAS
+             ============================================================
+             Muestra los 3 tipos de cabaña con imagen, badge de
+             capacidad, precio y botón "Ver Detalles". Incluye
+             tabla de tarifas por noche con notas de reserva. -->
+        <section id="cabanas" class="cabanas mt-5 pt-5 pb-5 reveal">
             <div class="container">
+
+                <!-- Títulos de la sección -->
                 <div class="row text-center">
                     <h2>Nuestras Cabañas</h2>
                     <h3>Encuentra tu espacio en Relmu</h3>
                 </div>
-                <div class="row text-center">
+
+                <!-- Tarjetas de cabañas -->
+                <div class="row text-center g-4 mt-2">
+
+                    <!-- Cabaña Pequeña -->
                     <div class="col-md-4">
                         <div class="cabana-img">
                             <span class="badge-capacidad">
@@ -193,6 +249,7 @@
                         <button>Ver Detalles</button>
                     </div>
 
+                    <!-- Cabaña Grande -->
                     <div class="col-md-4">
                         <div class="cabana-img">
                             <span class="badge-capacidad">
@@ -205,6 +262,7 @@
                         <button>Ver Detalles</button>
                     </div>
 
+                    <!-- Casa Grande -->
                     <div class="col-md-4">
                         <div class="cabana-img">
                             <span class="badge-capacidad">
@@ -218,8 +276,10 @@
                     </div>
 
                 </div>
+
+                <!-- Encabezado y notas de la tabla de tarifas -->
                 <div class="row mt-5">
-                    <div class="d-flex justify-content-beetween">
+                    <div class="d-flex justify-content-between flex-column flex-md-row">
                         <h2 class="w-100">Valores Por Noche</h2>
                         <div class="nota-tarifa">
                             <p><span class="fw-bold">Reserva:</span> Las reservas se realizan cancelando el 30% del
@@ -230,57 +290,68 @@
                                 de 2
                                 años gratis. El segundo menor de 2 años debe contabilizarse dentro del valor</p>
                         </div>
-
                     </div>
-
                 </div>
+
+                <!-- Tabla de tarifas (con scroll horizontal en móvil) -->
                 <div class="row">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Alojamiento</th>
-                                <th scope="col">Huespedes</th>
-                                <th scope="col">Precio por noche</th>
-                            </tr>
-                        </thead>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Alojamiento</th>
+                                    <th scope="col">Huespedes</th>
+                                    <th scope="col">Precio por noche</th>
+                                </tr>
+                            </thead>
 
-                        <tbody>
-                            <tr>
-                                <td>Cabaña Pequeña</td>
-                                <td>2 Personas</td>
-                                <td>$40.000</td>
-                            </tr>
+                            <tbody>
+                                <tr>
+                                    <td>Cabaña Pequeña</td>
+                                    <td>2 Personas</td>
+                                    <td>$40.000</td>
+                                </tr>
 
-                            <tr>
-                                <td>Cabaña Pequeña</td>
-                                <td>3 Personas</td>
-                                <td>$47.000</td>
-                            </tr>
+                                <tr>
+                                    <td>Cabaña Pequeña</td>
+                                    <td>3 Personas</td>
+                                    <td>$47.000</td>
+                                </tr>
 
-                            <tr>
-                                <td>Cabaña Grande</td>
-                                <td>4 a 5 Personas</td>
-                                <td>$65.000</td>
-                            </tr>
+                                <tr>
+                                    <td>Cabaña Grande</td>
+                                    <td>4 a 5 Personas</td>
+                                    <td>$65.000</td>
+                                </tr>
 
-                            <tr>
-                                <td>Cabaña Grande</td>
-                                <td>6 a 8 Personas</td>
-                                <td>$80.000</td>
-                            </tr>
+                                <tr>
+                                    <td>Cabaña Grande</td>
+                                    <td>6 a 8 Personas</td>
+                                    <td>$80.000</td>
+                                </tr>
 
-                            <tr>
-                                <td>Casa Grande</td>
-                                <td>9 a 12 Personas</td>
-                                <td>$125.000</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                <tr>
+                                    <td>Casa Grande</td>
+                                    <td>9 a 12 Personas</td>
+                                    <td>$125.000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="ubicacion" class="ubicacion">
+        </section>
+
+        <!-- ============================================================
+             SECCIÓN UBICACIÓN
+             ============================================================
+             Dos columnas: texto con indicaciones de cómo llegar a la
+             izquierda y mapa de Google Maps embebido a la derecha.
+             En móvil se apilan verticalmente. -->
+        <section id="ubicacion" class="ubicacion reveal">
             <div class="row row-ubicacion justify-content-between">
+
+                <!-- Columna de texto con indicaciones -->
                 <div class="col-md-6 columna-ubicacion-texto">
                     <div class="ubicacion-texto">
                         <h2>Ubicación</h2>
@@ -298,22 +369,31 @@
                         <button>Fijar Ruta</button>
                     </div>
                 </div>
+
+                <!-- Columna con mapa embebido de Google Maps -->
                 <div class="col-md-6 columna-ubicacion-texto">
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d6156.060724571984!2d-72.08340207144167!3d-39.513804421962234!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMznCsDMwJzQxLjkiUyA3MsKwMDUnMDEuNSJX!5e0!3m2!1ses!2scl!4v1790347915825!5m2!1ses!2scl"
-                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                        width="100%" height="100%" style="border:0; min-height: 400px;" allowfullscreen="" loading="lazy"
                         referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
 
             </div>
-        </div>
-        <div id="atractivos_turisticos" class="atractivos mt-5 container">
+        </section>
+
+        <!-- ============================================================
+             SECCIÓN ATRACTIVOS TURÍSTICOS
+             ============================================================
+             Galería horizontal de lugares cercanos para visitar.
+             Incluye botones de filtro (Termas / Lagos / Alrededores).
+             En móvil la galería permite scroll horizontal. -->
+        <section id="atractivos_turisticos" class="atractivos mt-5 container reveal">
             <div class="row text-center">
                 <div class="offset-md-2 col-md-8">
                     <h2>Atractivos Turísticos</h2>
                     <h3>Durante tu estadía también puedes conocer distintos lugares y experiencias que ofrece la zona
                     </h3>
-                    <div class="botones-atractivos d-flex justify-content-center gap-5 mt-3">
+                    <div class="botones-atractivos d-flex justify-content-center gap-3 gap-md-5 mt-3 flex-wrap">
                         <button>Termas</button>
                         <button class="apagado">Lagos</button>
                         <button class="apagado">Alrededores</button>
@@ -321,28 +401,35 @@
                 </div>
             </div>
 
+            <!-- Galería de atractivos (scroll horizontal en móvil) -->
             <div class="row mt-4">
-                <ul class="d-flex text-center justify-content-evenly list-unstyled">
-                    <li><img src="assets/img/terma-el-rincon.png" alt="">
+                <ul class="d-flex text-center justify-content-evenly list-unstyled flex-nowrap flex-md-wrap">
+                    <li><img src="assets/img/terma-el-rincon.png" alt="Termas El Rincón">
                         <p>Termas El Rincón</p>
                     </li>
-                    <li><img src="assets/img/terma-conaripe.png" alt="">
+                    <li><img src="assets/img/terma-conaripe.png" alt="Termas Coñaripe">
                         <p>Termas Coñaripe</p>
                     </li>
-                    <li><img src="assets/img/terma-vergara.png" alt="">
+                    <li><img src="assets/img/terma-vergara.png" alt="Termas Vergara">
                         <p>Termas Vergara</p>
                     </li>
-                    <li><img src="assets/img/eco-terma-pellaifa.png" alt="">
+                    <li><img src="assets/img/eco-terma-pellaifa.png" alt="Eco Termas Pellaifa">
                         <p>Eco Termas Pellaifa</p>
                     </li>
-                    <li><img src="assets/img/terma-geometrica.png" alt="">
+                    <li><img src="assets/img/terma-geometrica.png" alt="Termas Geométricas">
                         <p>Termas Geométricas</p>
                     </li>
                 </ul>
             </div>
 
-        </div>
-        <div class="banner-final container-fluid text-center">
+        </section>
+
+        <!-- ============================================================
+             BANNER FINAL (call to action)
+             ============================================================
+             Sección con imagen de fondo y overlay oscuro que invita
+             al usuario a reservar. Texto centrado con botón. -->
+        <section class="banner-final container-fluid text-center reveal">
             <div class="row">
                 <div class="col-md-12">
                     <h2>¿Listo para reservar?</h2>
@@ -350,18 +437,26 @@
                     <button>Reservar</button>
                 </div>
             </div>
-
-        </div>
+        </section>
     </main>
 
-    <footer>
+    <!-- ============================================================
+         FOOTER
+         ============================================================
+         Pie de página con 3 columnas: logo y descripción, enlaces
+         rápidos, y datos de contacto. En móvil se apilan verticalmente. -->
+    <footer class="reveal">
         <div class="container">
-            <div class="row">
+            <div class="row g-4">
+
+                <!-- Columna 1: Logo y descripción -->
                 <div class="col-md-4">
-                    <a href="index.html"><img src="assets/img/logo relmu.webp" alt=""></a>
+                    <a href="index.html"><img src="assets/img/logo relmu.webp" alt="Logo Relmu"></a>
                     <p>Un lugar para compartir y descansar.</p>
                     <p>desarrollado por <a href="https://github.com/Martinn2002" target="_blank">Martín Pérez</a></p>
                 </div>
+
+                <!-- Columna 2: Enlaces rápidos -->
                 <div class="col-md-4">
                     <h5>Enlaces Rápidos</h5>
                     <ul class="list-unstyled">
@@ -370,7 +465,10 @@
                         <li><a href="#atractivos_turisticos">Atractivos Turisticos</a></li>
                         <li><a href="#reglamento">Reglamento</a></li>
                         <li><a href="#ubicacion">Ubicación</a></li>
+                    </ul>
                 </div>
+
+                <!-- Columna 3: Contacto y reservas -->
                 <div class="col-md-4">
                     <h5>Contacto y Reservas</h5>
                     <p><i class="bi bi-geo-alt"></i> Camino Licán Ray a Coñaripe Km 8½, Panguipulli, Región de
@@ -382,9 +480,13 @@
         </div>
     </footer>
 
+    <!-- Bootstrap 5 JS bundle (incluye Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
+
+    <!-- Script principal -->
+    <script type="module" src="assets/js/script.js"></script>
 </body>
 
 </html>

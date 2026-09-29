@@ -1,0 +1,61 @@
+@use 'variables';
+@use 'mixins';
+
+// ============================================================
+// UBICACIÓN
+// ============================================================
+
+.columna-ubicacion-texto {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.row-ubicacion {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.ubicacion-texto {
+    position: relative;
+    overflow: hidden;
+    padding: 2rem;
+    color: variables.$color-background;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    h2 {
+        color: variables.$color-background;
+    }
+
+    &::before {
+        @include mixins.capa_textura("madera-oscura.jpg", 1);
+    }
+
+    &::after {
+        @include mixins.capa_color(variables.$color-cafe-oscuro, 0.80);
+    }
+
+    > * {
+        position: relative;
+        z-index: 2;
+    }
+
+    // El mapa ocupa toda la altura de su columna
+    iframe {
+        min-height: 400px;
+        height: 100%;
+    }
+}
+
+// El contenedor del mapa también necesita altura completa
+.ubicacion .col-md-6:last-child {
+    display: flex;
+}
+
+.ubicacion iframe {
+    width: 100%;
+    border: 0;
+    flex: 1;
+}

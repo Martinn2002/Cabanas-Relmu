@@ -1,0 +1,37 @@
+@use 'variables';
+
+// ============================================================
+// ATRACTIVOS TURÍSTICOS
+// ============================================================
+
+.botones-atractivos {
+    .apagado {
+        color: variables.$color-oscuro;
+        border: 1px solid variables.$color-acento-cromatico;
+        background-color: transparent;
+
+        &:hover {
+            color: variables.$color-background;
+            background-color: variables.$color-cafe-oscuro;
+            border: 1px solid variables.$color-cafe-oscuro;
+        }
+    }
+}
+
+// Cada item de la galería con hover suave
+.atractivos ul li {
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: translateY(-6px);
+    }
+
+    img {
+        border-radius: 12px;
+        transition: box-shadow 0.3s ease;
+    }
+
+    &:hover img {
+        box-shadow: 0 8px 24px rgba(94, 48, 35, 0.25);
+    }
+}

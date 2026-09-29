@@ -1,0 +1,38 @@
+@use 'variables';
+@use 'mixins';
+
+// ============================================================
+// BANNER FINAL (call to action)
+// ============================================================
+
+.banner-final {
+    position: relative;
+    overflow: hidden;
+    color: variables.$color-background;
+    padding: 4rem 1rem;
+    background-image: url("/assets/img/banner final.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; // efecto parallax suave en escritorio
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-color: rgba(30, 15, 11, 0.75);
+        z-index: 0;
+    }
+
+    > * {
+        position: relative;
+        z-index: 1;
+    }
+
+    h2 {
+        color: variables.$color-background;
+    }
+
+    p {
+        color: variables.$color-background;
+    }
+}
