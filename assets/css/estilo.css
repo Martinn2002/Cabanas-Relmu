@@ -383,7 +383,6 @@ nav.scrolled::before {
 table {
   text-align: center;
   border: 1px solid #C08552 !important;
-  border-radius: 8px;
   overflow: hidden;
 }
 
@@ -503,6 +502,7 @@ tbody tr:hover td {
 .atractivos ul li img {
   border-radius: 12px;
   transition: box-shadow 0.3s ease;
+  border: 1px solid #C08552;
 }
 .atractivos ul li:hover img {
   box-shadow: 0 8px 24px rgba(94, 48, 35, 0.25);

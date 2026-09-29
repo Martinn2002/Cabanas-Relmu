@@ -29,6 +29,7 @@
     img {
         border-radius: 12px;
         transition: box-shadow 0.3s ease;
+        border: 1px solid variables.$color-acento-cromatico;
     }
 
     &:hover img {
