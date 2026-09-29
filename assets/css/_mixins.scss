@@ -7,7 +7,7 @@
 // ------ Mixin: Botón base ------
 // Estilo compartido por todos los botones del sitio.
 @mixin boton_diseno {
-    background-color: variables.$color-cafe-oscuro;
+    background-color: variables.$color-acento-cromatico;
     color: variables.$color-background;
     border: none;
     border-radius: 6px;
@@ -19,7 +19,7 @@
     transition: background-color 0.25s ease, color 0.25s ease, transform 0.15s ease, box-shadow 0.25s ease;
 
     &:hover {
-        background-color: variables.$color-acento-cromatico;
+        background-color: variables.$color-cafe-oscuro;
         color: variables.$color-background;
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(94, 48, 35, 0.3);

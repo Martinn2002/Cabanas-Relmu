@@ -56,7 +56,7 @@ body {
 }
 
 button {
-  background-color: #5E3023;
+  background-color: #C08552;
   color: #F3E9DC;
   border: none;
   border-radius: 6px;
@@ -68,7 +68,7 @@ button {
   transition: background-color 0.25s ease, color 0.25s ease, transform 0.15s ease, box-shadow 0.25s ease;
 }
 button:hover {
-  background-color: #C08552;
+  background-color: #5E3023;
   color: #F3E9DC;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(94, 48, 35, 0.3);
@@ -597,7 +597,7 @@ footer .container {
   position: relative;
 }
 footer .container::after {
-  content: "© 2024 Cabañas Relmu. Todos los derechos reservados.";
+  content: "© 2026 Cabañas Relmu. Todos los derechos reservados.";
   display: block;
   text-align: center;
   margin-top: 2rem;
