@@ -1,9 +1,11 @@
 @use 'variables';
 @use 'mixins';
 
-// ==========================
-// Estilos generales
-// ==========================
+// ============================================================
+// ESTILOS GENERALES
+// ============================================================
+// Fondo base del body y overrides de utilidades de Bootstrap
+// para que respeten la paleta del proyecto.
 
 body {
     background-color: variables.$color-background;
@@ -17,9 +19,12 @@ button {
     background-color: variables.$color-background !important;
 }
 
-// ==========================
-// Navbar
-// ==========================
+
+// ============================================================
+// NAVBAR
+// ============================================================
+// El nav lleva una textura de fondo con opacidad (madera clara)
+// detrás de su contenido, usando un pseudo-elemento ::before.
 
 nav {
     position: relative;
@@ -62,16 +67,26 @@ nav {
     .active {
         color: variables.$color-acento-cromatico !important;
     }
-
-
 }
 
-.botones-hero-secundarios{
+
+// ============================================================
+// HERO (banner + carrusel)
+// ============================================================
+// Estructura: .hero contiene el carrusel de fondo (.imagen-banner)
+// y el texto superpuesto (.texto-hero), centrado con position:
+// absolute + flexbox. Los botones circulares del carrusel
+// (indicadores y flechas) se estilizan aparte, más abajo.
+
+// Botones secundarios sobre el hero (contorno, sin relleno)
+.botones-hero-secundarios {
     border: 1px solid variables.$color-background;
     color: variables.$color-background;
     background-color: transparent;
 }
 
+// Overlay oscuro sobre las imágenes del carrusel, para que el
+// texto blanco superpuesto se lea bien
 .imagen-banner {
     position: relative;
 
@@ -90,10 +105,6 @@ nav {
     }
 }
 
-// ==========================
-// Hero
-// ==========================
-
 .hero {
     position: relative;
 
@@ -101,7 +112,7 @@ nav {
         height: 90dvh;
     }
 
-    h2{
+    h2 {
         color: variables.$color-background;
     }
 
@@ -115,6 +126,7 @@ nav {
         align-items: center;
         color: #fff;
         pointer-events: none; // deja pasar los clics a las flechas e indicadores
+        font-family: "Playfair", serif !important;
 
         h1,
         h2,
@@ -122,20 +134,14 @@ nav {
             margin: 0.25rem 0;
         }
 
-        .botones {
-            pointer-events: auto;
-            margin-bottom: 0;
-            padding: 0;
-        }
-    }
-
-    .texto-hero {
-        font-family: "Playfair", serif !important;
-        color: variables.$color-background;
-
         h1 {
             font-size: variables.$tamano-h1;
             font-weight: 700;
+        }
+
+        h2 {
+            font-size: variables.$tamano-h2;
+            color: variables.$color-background;
         }
 
         h3 {
@@ -143,21 +149,16 @@ nav {
             color: variables.$color-acento-cromatico;
         }
 
-        h2 {
-            font-size: variables.$tamano-h2;
+        .botones {
+            pointer-events: auto; // los botones sí reciben clics
+            margin-bottom: 0;
+            padding: 0;
         }
     }
 }
 
-
-
-// ==========================
-// Controles del carrusel (circulares)
-// ==========================
-
+// Controles del carrusel (indicadores y flechas), circulares
 .hero .carousel {
-
-
 
     // Indicadores (los puntitos de abajo)
     .carousel-indicators {
@@ -221,6 +222,14 @@ nav {
     }
 }
 
+
+// ============================================================
+// TARJETAS CON ÍCONO CIRCULAR (ej. "Cocina equipada")
+// ============================================================
+// .icono-circular es un div que dibuja el círculo café; el <img>
+// de adentro es el ícono (PNG solo trazo), forzado a blanco con
+// filter, chico y centrado sobre la imagen de la tarjeta.
+
 .imagen-tarjeta {
     .icono-circular {
         position: absolute;
@@ -240,7 +249,243 @@ nav {
             width: 55%;
             height: 55%;
             object-fit: contain;
-            filter: brightness(0) invert(1);
+            filter: brightness(0) invert(1); // fuerza el ícono a blanco puro
         }
+    }
+}
+
+
+// ============================================================
+// CABAÑAS
+// ============================================================
+// Sección de cabañas: precios, badge de capacidad sobre la
+// imagen, tabla de tarifas y fondo con textura + opacidad.
+
+.span-precio {
+    color: variables.$color-cafe-oscuro;
+    font-weight: 700;
+}
+
+.cabana-img {
+    position: relative;
+
+    .badge-capacidad {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        border-radius: 6px;
+        background-color: variables.$color-cafe-oscuro;
+        color: variables.$color-background;
+        font-size: variables.$tamano-p-mediano;
+        font-weight: 500;
+
+        i {
+            font-size: variables.$tamano-p;
+        }
+    }
+}
+
+.nota-tarifa p {
+    font-size: variables.$tamano-p-mediano;
+}
+
+// Tabla de valores por noche
+table {
+    text-align: center;
+    border: 1px solid variables.$color-acento-cromatico !important;
+}
+
+th {
+    background-color: variables.$color-acento-cromatico !important;
+    font-family: "Playfair", serif;
+    color: variables.$color-background !important;
+    font-size: variables.$tamano-h3 !important;
+}
+
+td {
+    background-color: variables.$color-background !important;
+    border-bottom: 1px solid variables.$color-acento-cromatico !important;
+}
+
+// Fondo de la sección: color sólido + textura con opacidad propia
+// (la textura se atenúa a sí misma, no afecta al color de fondo)
+.cabanas {
+    position: relative;
+    background-color: variables.$color-background;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url("../img/madera-clara.jpg");
+        background-size: cover;
+        background-position: center;
+        opacity: 0.3;
+        z-index: 0;
+    }
+
+    >* {
+        position: relative;
+        z-index: 1;
+    }
+}
+
+
+// ============================================================
+// UBICACIÓN
+// ============================================================
+// Ajustes de grilla para que la columna de texto quede sin
+// márgenes/paddings extra de Bootstrap, y fondo con textura
+// oscura + capa de color café con opacidad encima.
+
+.columna-ubicacion-texto {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.row-ubicacion {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.ubicacion-texto {
+    position: relative;
+    overflow: hidden;
+    padding: 2rem; // para que el fondo no quede pegado al texto
+    color: variables.$color-background;
+
+    h2 {
+        color: variables.$color-background;
+    }
+
+    // Capa 1: textura de fondo, nítida
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url("../img/madera-oscura.jpg");
+        background-size: cover;
+        background-position: center;
+        z-index: 0;
+    }
+
+    // Capa 2: color café, con opacidad, por encima de la textura
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-color: variables.$color-cafe-oscuro;
+        opacity: 0.80;
+        z-index: 1;
+    }
+
+    // Contenido real, por encima de ambas capas
+    >* {
+        position: relative;
+        z-index: 2;
+    }
+}
+
+.botones-atractivos {
+    .apagado {
+        color: variables.$color-oscuro;
+        border: 1px solid variables.$color-acento-cromatico;
+        background-color: transparent;
+
+        &:hover {
+            color: variables.$color-background;
+            background-color: variables.$color-cafe-oscuro;
+            border: none;
+        }
+    }
+
+}
+
+.banner-final {
+    position: relative; // clave: ancla el ::before al banner
+    overflow: hidden;
+    color: variables.$color-background;
+    padding: 2rem 0;
+
+    // Capa 1: imagen de fondo, nítida
+    background-image: url("../img/banner final.png");
+    background-size: cover;
+    background-position: center;
+
+    // Capa 2: color café con opacidad, encima de la imagen
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-color: rgba(30, 15, 11, 0.75);
+        z-index: 0;
+    }
+
+    // Contenido real, por encima de la capa de color
+    >* {
+        position: relative;
+        z-index: 1;
+    }
+
+    h2 {
+        color: variables.$color-background;
+    }
+
+    p {
+        color: variables.$color-background;
+    }
+}
+
+footer {
+    position: relative;
+    overflow: hidden;
+    padding: 2rem; // para que el fondo no quede pegado al texto
+    color: variables.$color-background;
+
+    h2 {
+        color: variables.$color-background;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url("../img/madera-oscura.jpg");
+        background-size: cover;
+        background-position: center;
+        z-index: 0;
+    }
+
+    // Capa 2: color café, con opacidad, por encima de la textura
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-color: variables.$color-cafe-oscuro;
+        opacity: 0.80;
+        z-index: 1;
+    }
+
+    // Contenido real, por encima de ambas capas
+    >* {
+        position: relative;
+        z-index: 2;
+    }
+
+    a{
+        color: variables.$color-acento-cromatico;
+        text-decoration: none;
+
+        &:hover {
+            color: variables.$color-background;
+        }
+    }
+    .bi{
+        color: variables.$color-acento-cromatico;
     }
 }

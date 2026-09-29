@@ -146,31 +146,29 @@ nav > * {
   align-items: center;
   color: #fff;
   pointer-events: none;
+  font-family: "Playfair", serif !important;
 }
 .hero .texto-hero h1,
 .hero .texto-hero h2,
 .hero .texto-hero h3 {
   margin: 0.25rem 0;
 }
-.hero .texto-hero .botones {
-  pointer-events: auto;
-  margin-bottom: 0;
-  padding: 0;
-}
-.hero .texto-hero {
-  font-family: "Playfair", serif !important;
-  color: #F3E9DC;
-}
 .hero .texto-hero h1 {
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
+}
+.hero .texto-hero h2 {
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  color: #F3E9DC;
 }
 .hero .texto-hero h3 {
   font-size: clamp(1.5rem, 2.6vw, 2.125rem);
   color: #C08552;
 }
-.hero .texto-hero h2 {
-  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+.hero .texto-hero .botones {
+  pointer-events: auto;
+  margin-bottom: 0;
+  padding: 0;
 }
 
 .hero .carousel .carousel-indicators {
@@ -248,4 +246,191 @@ nav > * {
   -o-object-fit: contain;
      object-fit: contain;
   filter: brightness(0) invert(1);
+}
+
+.span-precio {
+  color: #5E3023;
+  font-weight: 700;
+}
+
+.cabana-img {
+  position: relative;
+}
+.cabana-img .badge-capacidad {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  background-color: #5E3023;
+  color: #F3E9DC;
+  font-size: clamp(0.75rem, 0.3vw + 0.65rem, 0.8125rem);
+  font-weight: 500;
+}
+.cabana-img .badge-capacidad i {
+  font-size: clamp(0.875rem, 0.5vw + 0.75rem, 1rem);
+}
+
+.nota-tarifa p {
+  font-size: clamp(0.75rem, 0.3vw + 0.65rem, 0.8125rem);
+}
+
+table {
+  text-align: center;
+  border: 1px solid #C08552 !important;
+}
+
+th {
+  background-color: #C08552 !important;
+  font-family: "Playfair", serif;
+  color: #F3E9DC !important;
+  font-size: clamp(1.5rem, 2.6vw, 2.125rem) !important;
+}
+
+td {
+  background-color: #F3E9DC !important;
+  border-bottom: 1px solid #C08552 !important;
+}
+
+.cabanas {
+  position: relative;
+  background-color: #F3E9DC;
+}
+.cabanas::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../img/madera-clara.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3;
+  z-index: 0;
+}
+.cabanas > * {
+  position: relative;
+  z-index: 1;
+}
+
+.columna-ubicacion-texto {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.row-ubicacion {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.ubicacion-texto {
+  position: relative;
+  overflow: hidden;
+  padding: 2rem;
+  color: #F3E9DC;
+}
+.ubicacion-texto h2 {
+  color: #F3E9DC;
+}
+.ubicacion-texto::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../img/madera-oscura.jpg");
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+.ubicacion-texto::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #5E3023;
+  opacity: 0.8;
+  z-index: 1;
+}
+.ubicacion-texto > * {
+  position: relative;
+  z-index: 2;
+}
+
+.botones-atractivos .apagado {
+  color: #1E0F0B;
+  border: 1px solid #C08552;
+  background-color: transparent;
+}
+.botones-atractivos .apagado:hover {
+  color: #F3E9DC;
+  background-color: #5E3023;
+  border: none;
+}
+
+.banner-final {
+  position: relative;
+  overflow: hidden;
+  color: #F3E9DC;
+  padding: 2rem 0;
+  background-image: url("../img/banner final.png");
+  background-size: cover;
+  background-position: center;
+}
+.banner-final::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(30, 15, 11, 0.75);
+  z-index: 0;
+}
+.banner-final > * {
+  position: relative;
+  z-index: 1;
+}
+.banner-final h2 {
+  color: #F3E9DC;
+}
+.banner-final p {
+  color: #F3E9DC;
+}
+
+footer {
+  position: relative;
+  overflow: hidden;
+  padding: 2rem;
+  color: #F3E9DC;
+}
+footer h2 {
+  color: #F3E9DC;
+}
+footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../img/madera-oscura.jpg");
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+footer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #5E3023;
+  opacity: 0.8;
+  z-index: 1;
+}
+footer > * {
+  position: relative;
+  z-index: 2;
+}
+footer a {
+  color: #C08552;
+  text-decoration: none;
+}
+footer a:hover {
+  color: #F3E9DC;
+}
+footer .bi {
+  color: #C08552;
 }/*# sourceMappingURL=estilo.css.map */
