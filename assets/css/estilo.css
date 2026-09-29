@@ -103,7 +103,7 @@ nav::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("/assets/img/madera-clara.jpg");
+  background-image: url(".../img/madera-clara.jpg");
   background-size: cover;
   background-position: center;
   opacity: 0.3;
@@ -412,7 +412,7 @@ tbody tr:hover td {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("/assets/img/madera-clara.jpg");
+  background-image: url(".../img/madera-clara.jpg");
   background-size: cover;
   background-position: center;
   opacity: 0.3;
@@ -450,7 +450,7 @@ tbody tr:hover td {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("/assets/img/madera-oscura.jpg");
+  background-image: url(".../img/madera-oscura.jpg");
   background-size: cover;
   background-position: center;
   opacity: 1;
@@ -513,7 +513,7 @@ tbody tr:hover td {
   overflow: hidden;
   color: #F3E9DC;
   padding: 4rem 1rem;
-  background-image: url("/assets/img/banner final.png");
+  background-image: url(".../img/banner final.png");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -563,7 +563,7 @@ footer::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("/assets/img/madera-oscura.jpg");
+  background-image: url(".../img/madera-oscura.jpg");
   background-size: cover;
   background-position: center;
   opacity: 1;

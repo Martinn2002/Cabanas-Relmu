@@ -37,7 +37,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background-image: url("/assets/img/#{$imagen}");
+    background-image: url(".../img/#{$imagen}");
     background-size: cover;
     background-position: center;
     opacity: $opacidad;
