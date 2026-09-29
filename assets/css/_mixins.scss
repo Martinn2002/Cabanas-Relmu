@@ -37,12 +37,12 @@
     content: "";
     position: absolute;
     inset: 0;
-    background-image: url(".../img/#{$imagen}");
+    background-image: url("../img/#{$imagen}");
     background-size: cover;
     background-position: center;
     opacity: $opacidad;
     z-index: 0;
-}
+} 
 
 // ------ Mixin: Overlay de color ------
 // Pseudo-elemento ::after con un color sólido a la opacidad dada.
