@@ -1,0 +1,97 @@
+@use 'variables';
+@use 'mixins';
+
+// ============================================================
+// PREGUNTAS FRECUENTES (acordeón)
+// ============================================================
+.faq {
+    position: relative;
+    padding: clamp(3rem, 6vw, 5rem) 1rem;
+    background-color: variables.$color-crema-claro;
+    overflow: hidden;
+
+    &::before {
+        @include mixins.capa_textura("madera-clara.webp", 0.2);
+    }
+
+    >* {
+        position: relative;
+        z-index: 1;
+    }
+
+    .accordion {
+        max-width: 56rem;
+        margin: 0 auto;
+    }
+
+    .accordion-item {
+        margin-bottom: 0.85rem;
+        border: 1px solid variables.$color-madera-borde;
+        border-radius: variables.$radio-tarjeta !important;
+        overflow: hidden;
+        background-color: variables.$color-crema-claro;
+        box-shadow: variables.$sombra-suave;
+        transition: box-shadow 0.3s ease;
+    }
+
+    .accordion-item:has(.accordion-button:not(.collapsed)) {
+        box-shadow: variables.$sombra-media;
+    }
+
+    .accordion-button {
+        padding: 1.1rem 1.35rem;
+        background-color: variables.$color-crema-claro;
+        color: variables.$color-cafe-oscuro;
+        font-family: "Playfair", serif;
+        font-size: clamp(1rem, 1.2vw, 1.15rem);
+        font-weight: 600;
+        box-shadow: none !important;
+        transition: background-color 0.3s ease, color 0.3s ease;
+
+        &:hover {
+            background-color: rgba(192, 133, 82, 0.08);
+        }
+
+        &:not(.collapsed) {
+            background-color: rgba(192, 133, 82, 0.14);
+            color: variables.$color-cafe-oscuro;
+        }
+
+        &:focus-visible {
+            @include mixins.foco_visible;
+        }
+
+        // Círculo con signo + / − dibujado con SVG embebido
+        &::after {
+            width: 30px;
+            height: 30px;
+            flex: 0 0 30px;
+            border-radius: 50%;
+            background-color: variables.$color-acento-cromatico;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F3E9DC' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 14px 14px;
+            transition: transform 0.35s ease, background-color 0.35s ease;
+        }
+
+        &:not(.collapsed)::after {
+            transform: rotate(180deg);
+            background-color: variables.$color-cafe-oscuro;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F3E9DC' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M5 12h14'/%3E%3C/svg%3E");
+        }
+    }
+
+    .accordion-body {
+        padding: 0.25rem 1.35rem 1.35rem;
+        font-family: "DM Sans", sans-serif;
+        font-size: variables.$tamano-p;
+        line-height: 1.75;
+        color: rgba(30, 15, 11, 0.8);
+
+        a {
+            color: variables.$color-acento-cromatico;
+            font-weight: 500;
+        }
+    }
+}

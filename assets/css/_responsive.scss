@@ -1,3 +1,5 @@
+@use 'variables';
+
 // ============================================================
 // MEDIA QUERIES - RESPONSIVIDAD
 // ============================================================
@@ -5,61 +7,119 @@
 // ------ Móviles (hasta 575px) ------
 @media (max-width: 575px) {
     .hero img {
-        height: 70dvh;
+        height: 74dvh;
+        min-height: 470px;
     }
 
-    .hero .texto-hero .botones {
-        flex-direction: column;
-        gap: 0.75rem !important;
+    .hero .texto-hero {
+        padding: 4.5rem 1rem 3.25rem;
+
+        .botones {
+            flex-direction: column;
+            gap: 0.6rem !important;
+            width: 100%;
+            max-width: 270px;
+
+            li,
+            button {
+                width: 100%;
+            }
+        }
+    }
+
+    // En móvil la navegación del carrusel se hace con los indicadores
+    .hero .carousel .carousel-control-prev,
+    .hero .carousel .carousel-control-next {
+        display: none;
     }
 
     .ubicacion-texto {
-        padding: 1.5rem 1rem;
+        padding: 1.75rem 1.25rem;
+
+        .ubicacion-acciones {
+            flex-direction: column;
+
+            button {
+                width: 100%;
+            }
+        }
     }
 
-    .cabanas .table-responsive {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
+    .btn-arriba {
+        width: 46px;
+        height: 46px;
+        right: 0.85rem;
+        bottom: 0.85rem;
     }
 
-    // Desactivar parallax en móvil (rendimiento)
-    .banner-final {
-        background-attachment: scroll;
+    .modal-body {
+        padding: 1.15rem;
+    }
+
+    .datos-rapidos .dato-texto {
+        font-size: 0.7rem;
     }
 }
 
-// ------ Tablets (576px a 767px) ------
+// ------ Tablets (hasta 767px) ------
 @media (max-width: 767px) {
     .caracteristicas .col-md-3 {
         margin-bottom: 2rem;
     }
 
     .cabanas .col-md-4 {
-        margin-bottom: 2rem;
+        margin-bottom: 2.25rem;
     }
 
-    .atractivos ul {
+    // La galería de atractivos se desliza horizontalmente
+    .lista-atractivos {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
         overflow-x: auto;
-        flex-wrap: nowrap !important;
+        scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
-        padding-bottom: 1rem;
+        padding-bottom: 0.85rem;
+    }
 
-        li {
-            flex: 0 0 auto;
-            min-width: 150px;
+    .atractivo {
+        width: 150px;
+        scroll-snap-align: center;
+
+        .atractivo-media>i {
+            font-size: 2.6rem;
         }
     }
 
-    // Desactivar parallax en tablet
+    // Desactivar parallax en móvil (rendimiento)
     .banner-final {
         background-attachment: scroll;
     }
+
+    .tabla-tarifas {
+        font-size: 0.85rem;
+
+        th {
+            font-size: 0.95rem !important;
+        }
+    }
+
+    .tabla-cabana {
+        font-size: 0.8rem;
+    }
 }
 
-// ------ Escritorio pequeño (768px a 991px) ------
+// ------ Escritorio pequeño (hasta 991px) ------
 @media (max-width: 991px) {
     .navbar-nav .nav-item:last-child {
         margin-top: 0.5rem;
+    }
+
+    .hero .texto-hero {
+        padding-top: 4rem;
+    }
+
+    .paso {
+        margin-bottom: 1.5rem;
     }
 }
 
@@ -69,16 +129,12 @@
         scroll-behavior: auto;
     }
 
-    .reveal {
-        opacity: 1 !important;
-        transform: none !important;
-    }
-
-    .hero .texto-hero h1,
-    .hero .texto-hero h2,
-    .hero .texto-hero h3,
-    .hero .texto-hero .botones {
-        animation: none !important;
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
     }
 
     .banner-final {

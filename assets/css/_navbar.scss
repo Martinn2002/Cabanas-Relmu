@@ -4,34 +4,47 @@
 // ============================================================
 // NAVBAR
 // ============================================================
-// Navbar sticky con textura de madera clara al 30% de opacidad.
-// Al hacer scroll se añade sombra y se vuelve más opaco.
-
+// Navbar sticky con textura de madera clara. Al hacer scroll se
+// compacta, gana sombra y el enlace de la sección visible se
+// marca como activo (ScrollSpy).
 nav {
     position: sticky;
     top: 0;
     z-index: 1030;
     background-color: variables.$color-background !important;
-    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+    padding-block: 0.65rem;
+    transition: box-shadow 0.3s ease, padding 0.3s ease, background-color 0.3s ease;
 
+    // Textura de madera de fondo
     &::before {
-        @include mixins.capa_textura("madera-clara.jpg", 0.3);
+        @include mixins.capa_textura("madera-clara.webp", 0.3);
     }
 
-    > * {
+    >* {
         position: relative;
         z-index: 1;
     }
 
-    // Estado "scrolled": navbar más sólido con sombra
+    // Estado "scrolled": navbar más compacto y con sombra
     &.scrolled {
+        padding-block: 0.25rem;
         background-color: variables.$color-background !important;
-        box-shadow: 0 2px 20px rgba(94, 48, 35, 0.15);
+        box-shadow: 0 2px 20px rgba(94, 48, 35, 0.16);
 
         &::before {
-            opacity: 0.15;
+            opacity: 0.18;
+        }
+
+        .navbar-brand img {
+            height: 42px;
         }
     }
+}
+
+.navbar-brand img {
+    height: 50px;
+    width: auto;
+    transition: height 0.3s ease;
 }
 
 .navbar-nav {
@@ -45,7 +58,7 @@ nav {
         position: relative;
         transition: color 0.25s ease;
 
-        // Subrayado animado al hover
+        // Subrayado animado al hover / sección activa
         &::after {
             content: "";
             position: absolute;
@@ -74,5 +87,78 @@ nav {
             width: 100%;
             left: 0;
         }
+    }
+}
+
+// ------ Botón Reservar del navbar ------
+.btn-reservar {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background-color: variables.$color-cafe-oscuro;
+    color: variables.$color-background;
+    border: 1px solid variables.$color-cafe-oscuro;
+
+    &:hover {
+        background-color: variables.$color-acento-cromatico;
+        border-color: variables.$color-acento-cromatico;
+        color: variables.$color-background;
+    }
+
+    // Anillo que late suavemente para llamar la atención
+    &::after {
+        content: "";
+        position: absolute;
+        inset: -3px;
+        border-radius: variables.$radio-boton;
+        border: 1px solid rgba(192, 133, 82, 0.7);
+        animation: latido 3.2s ease-out infinite;
+        pointer-events: none;
+    }
+}
+
+@keyframes latido {
+    0% {
+        transform: scale(0.92);
+        opacity: 0.75;
+    }
+
+    55% {
+        transform: scale(1.12);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1.12);
+        opacity: 0;
+    }
+}
+
+// ------ Menú desplegable en móvil ------
+@media (max-width: 991px) {
+    .navbar-collapse {
+        margin-top: 0.75rem;
+        padding: 0.75rem 1rem 1rem;
+        border-radius: variables.$radio-tarjeta;
+        background-color: variables.$color-crema-claro;
+        @include mixins.marco_madera;
+
+        .nav-link {
+            padding-block: 0.55rem;
+        }
+
+        .btn-reservar {
+            width: 100%;
+            justify-content: center;
+            margin-top: 0.5rem;
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .btn-reservar::after {
+        animation: none;
+        opacity: 0;
     }
 }

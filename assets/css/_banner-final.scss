@@ -4,13 +4,12 @@
 // ============================================================
 // BANNER FINAL (call to action)
 // ============================================================
-
 .banner-final {
     position: relative;
     overflow: hidden;
     color: variables.$color-background;
-    padding: 4rem 1rem;
-    background-image: url("../img/banner final.png");
+    padding: clamp(4rem, 8vw, 6.5rem) 1rem;
+    background-image: url("../img/banner-final.webp");
     background-size: cover;
     background-position: center;
     background-attachment: fixed; // efecto parallax suave en escritorio
@@ -19,20 +18,91 @@
         content: "";
         position: absolute;
         inset: 0;
-        background-color: rgba(30, 15, 11, 0.75);
+        background: linear-gradient(180deg, rgba(30, 15, 11, 0.86), rgba(30, 15, 11, 0.72));
         z-index: 0;
     }
 
-    > * {
+    >* {
         position: relative;
         z-index: 1;
     }
 
     h2 {
         color: variables.$color-background;
+        margin-bottom: 0.75rem;
     }
 
     p {
-        color: variables.$color-background;
+        color: rgba(243, 233, 220, 0.88);
+        max-width: 40rem;
+        margin: 0 auto 1.5rem;
+        line-height: 1.7;
+    }
+
+    // Detalle decorativo de madera sobre el título
+    .banner-detalle {
+        display: block;
+        width: 90px;
+        height: 2px;
+        margin: 0 auto 1.25rem;
+        background: linear-gradient(90deg, transparent, variables.$color-acento-cromatico, transparent);
+        transform: scaleX(0);
+        transition: transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 0.25s;
+    }
+
+    &.visible .banner-detalle {
+        transform: scaleX(1);
+    }
+
+    // Los elementos entran escalonados al aparecer la sección
+    h2,
+    p,
+    .botones-banner {
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    &.visible h2 {
+        opacity: 1;
+        transform: none;
+        transition-delay: 0.15s;
+    }
+
+    &.visible p {
+        opacity: 1;
+        transform: none;
+        transition-delay: 0.3s;
+    }
+
+    &.visible .botones-banner {
+        opacity: 1;
+        transform: none;
+        transition-delay: 0.45s;
+    }
+
+    .botones-banner {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        justify-content: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .banner-final {
+
+        h2,
+        p,
+        .botones-banner {
+            opacity: 1;
+            transform: none;
+            transition: none;
+        }
+
+        .banner-detalle {
+            transform: scaleX(1);
+            transition: none;
+        }
     }
 }

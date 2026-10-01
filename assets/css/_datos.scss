@@ -1,0 +1,77 @@
+@use 'variables';
+@use 'mixins';
+
+// ============================================================
+// DATOS RÁPIDOS (franja con contadores animados)
+// ============================================================
+// Se superpone levemente al hero para dar sensación de capas.
+// Los números se animan con JavaScript al entrar en pantalla.
+.datos-rapidos {
+    position: relative;
+    z-index: 10;
+    margin-top: -60px;
+    padding: 1.75rem 1rem;
+    border-radius: variables.$radio-tarjeta;
+    background: linear-gradient(180deg, rgba(255, 250, 244, 0.98), rgba(243, 233, 220, 0.98));
+    overflow: hidden;
+    @include mixins.marco_madera;
+    box-shadow: variables.$sombra-media;
+
+    &::before {
+        @include mixins.capa_textura("madera-clara.webp", 0.14);
+    }
+
+    >* {
+        position: relative;
+        z-index: 1;
+    }
+}
+
+.dato {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.5rem 0;
+
+    i {
+        font-size: 1.15rem;
+        color: variables.$color-acento-cromatico;
+    }
+}
+
+.dato-numero {
+    font-family: "Playfair", serif;
+    font-size: clamp(1.75rem, 3.6vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1;
+    color: variables.$color-cafe-oscuro;
+
+    .sufijo {
+        font-size: 0.45em;
+        margin-left: 0.15em;
+        color: variables.$color-acento-cromatico;
+    }
+}
+
+.dato-texto {
+    font-family: "DM Sans", sans-serif;
+    font-size: variables.$tamano-p-mediano;
+    color: rgba(30, 15, 11, 0.7);
+    text-align: center;
+    max-width: 12rem;
+}
+
+// Separadores verticales entre datos (sólo en pantallas medianas+)
+@media (min-width: 768px) {
+    .dato+.dato {
+        border-left: 1px solid rgba(94, 48, 35, 0.14);
+    }
+}
+
+@media (max-width: 767px) {
+    .datos-rapidos {
+        margin-top: -34px;
+        padding: 1.25rem 0.75rem;
+    }
+}

@@ -4,13 +4,18 @@
 // Punto de entrada que importa todos los partials SCSS.
 // Cada partial agrupa los estilos de una sección del sitio.
 
-@use 'base';          // Reset ligero, body, botones globales
-@use 'navbar';        // Barra de navegación sticky
-@use 'hero';          // Banner principal con carrusel
+@use 'base';            // Reset ligero, botones, animaciones reveal y títulos
+@use 'flotantes';       // Barra de progreso, volver arriba y botón de contacto
+@use 'navbar';          // Barra de navegación sticky con ScrollSpy
+@use 'hero';            // Banner principal con carrusel cinematográfico
+@use 'datos';           // Franja de datos con contadores animados
 @use 'caracteristicas'; // Tarjetas de comodidades
-@use 'cabanas';       // Tarjetas de cabañas y tabla de tarifas
-@use 'ubicacion';     // Sección de ubicación con mapa
-@use 'atractivos';    // Galería de atractivos turísticos
-@use 'banner-final';  // Call to action final
-@use 'footer';        // Pie de página
-@use 'responsive';    // Media queries
+@use 'cabanas';         // Tarjetas de cabañas y tabla de tarifas
+@use 'pasos';           // Reserva en 3 pasos
+@use 'ubicacion';       // Sección de ubicación con mapa
+@use 'atractivos';      // Galería de atractivos turísticos con filtros
+@use 'faq';             // Preguntas frecuentes (acordeón)
+@use 'banner-final';    // Call to action final
+@use 'footer';          // Pie de página
+@use 'modal';           // Modales de reserva y detalle de cabaña
+@use 'responsive';      // Media queries

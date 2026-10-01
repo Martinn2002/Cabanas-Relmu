@@ -1,0 +1,87 @@
+@use 'variables';
+@use 'mixins';
+
+// ============================================================
+// PASOS DE RESERVA - "Reserva en 3 pasos"
+// ============================================================
+.pasos {
+    position: relative;
+    padding: clamp(3.5rem, 7vw, 5.5rem) 1rem;
+    background-color: variables.$color-background;
+    overflow: hidden;
+
+    &::before {
+        @include mixins.capa_textura("madera-clara.webp", 0.22);
+    }
+
+    >* {
+        position: relative;
+        z-index: 1;
+    }
+}
+
+.paso {
+    position: relative;
+    height: 100%;
+    margin-top: 2rem;
+    padding: 2.75rem 1.5rem 1.75rem;
+    text-align: center;
+    border-radius: variables.$radio-tarjeta;
+    background-color: variables.$color-crema-claro;
+    @include mixins.marco_madera;
+    transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.35s ease;
+
+    &:hover {
+        transform: translateY(-8px);
+        box-shadow: variables.$sombra-media;
+    }
+
+    h4 {
+        margin-bottom: 0.5rem;
+    }
+
+    p {
+        margin-bottom: 0;
+        color: rgba(30, 15, 11, 0.75);
+        line-height: 1.65;
+    }
+
+    // Número de madera que sobresale por arriba de la tarjeta
+    .paso-numero {
+        position: absolute;
+        top: -26px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 54px;
+        height: 54px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: linear-gradient(145deg, variables.$color-acento-cromatico, variables.$color-cafe-oscuro);
+        color: variables.$color-background;
+        font-family: "Playfair", serif;
+        font-size: 1.35rem;
+        font-weight: 700;
+        border: 3px solid variables.$color-crema-claro;
+        box-shadow: variables.$sombra-media;
+        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    &:hover .paso-numero {
+        transform: translateX(-50%) rotate(8deg) scale(1.06);
+    }
+}
+
+// Línea punteada que conecta los pasos en pantallas grandes
+@media (min-width: 768px) {
+    .paso+.paso::before {
+        content: "";
+        position: absolute;
+        top: 12px;
+        left: -14px;
+        width: 28px;
+        height: 2px;
+        background: repeating-linear-gradient(90deg, rgba(192, 133, 82, 0.55) 0 6px, transparent 6px 12px);
+    }
+}
