@@ -7,9 +7,11 @@
 
 // ------ Paleta de colores ------
 $color-background: #F3E9DC;        // Fondo claro (crema)
+$color-crema-claro: #FFFAF4;       // Crema más claro (tarjetas y modales)
 $color-acento-cromatico: #C08552;  // Acento cálido (cobre)
 $color-oscuro: #1E0F0B;            // Texto oscuro casi negro
 $color-cafe-oscuro: #5E3023;       // Café oscuro para fondos
+$color-madera-borde: rgba(94, 48, 35, 0.18); // Borde suave color madera
 
 // ------ Tamaños de tipografía (fluidos con clamp) ------
 $tamano-h1: clamp(2rem, 4vw, 3rem);
@@ -22,6 +24,18 @@ $tamano-h6: clamp(1rem, 1.2vw, 1.25rem);
 $tamano-p: clamp(0.875rem, 0.5vw + 0.75rem, 1rem);
 $tamano-p-mediano: clamp(0.75rem, 0.3vw + 0.65rem, 0.8125rem);
 $tamano-p-chico: 0.625rem;
+
+// ------ Sombras, radios y transiciones ------
+// Centralizadas para que tarjetas, modales y animaciones
+// se sientan coherentes en todo el sitio.
+$sombra-suave: 0 6px 18px rgba(94, 48, 35, 0.10);
+$sombra-media: 0 14px 34px rgba(94, 48, 35, 0.18);
+$sombra-fuerte: 0 22px 55px rgba(30, 15, 11, 0.38);
+$radio-tarjeta: 14px;
+$radio-boton: 8px;
+$transicion-rapida: 0.25s ease;
+$transicion-media: 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+$transicion-lenta: 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
 
 // ============================================================
 // JERARQUÍA DE ENCABEZADOS

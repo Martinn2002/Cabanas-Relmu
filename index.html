@@ -1,10 +1,34 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-CL">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cabañas Relmu</title>
+    <title>Cabañas Relmu | Cabañas de madera en Panguipulli, Región de Los Ríos</title>
+
+    <!-- Descripción para buscadores y redes sociales -->
+    <meta name="description"
+        content="Centro Vacacional Relmu: cabañas de madera en el sector Lluncura, Panguipulli. Alojamiento para 2 a 12 personas cerca de las termas y lagos de la Región de Los Ríos.">
+    <meta name="theme-color" content="#5E3023">
+    <meta name="author" content="Cabañas Relmu">
+
+    <!-- Icono del sitio -->
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+    <!-- Vista previa al compartir el enlace.
+         Al publicar el sitio, reemplazar por la URL absoluta, por ejemplo:
+         <meta property="og:image" content="https://tudominio.cl/assets/img/banner.webp"> -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Cabañas Relmu | Centro Vacacional en Panguipulli">
+    <meta property="og:description"
+        content="Cabañas de madera para 2 a 12 personas en el sector Lluncura, Panguipulli. Un lugar para compartir y descansar.">
+    <meta property="og:image" content="assets/img/banner.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cabañas Relmu | Centro Vacacional en Panguipulli">
+    <meta name="twitter:description"
+        content="Cabañas de madera para 2 a 12 personas en el sector Lluncura, Panguipulli.">
+    <meta name="twitter:image" content="assets/img/banner.webp">
 
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -20,27 +44,30 @@
         href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap"
         rel="stylesheet">
 
-    <!-- Hoja de estilos principal (SCSS compilado por Vite) -->
+    <!-- Hoja de estilos principal (SCSS compilado) -->
     <link rel="stylesheet" href="assets/css/estilo.css">
-  <meta property="og:image" content="https://bolt.new/static/og_default.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://bolt.new/static/og_default.png">
 </head>
 
 <body>
+    <!-- Barra de progreso de lectura (el ancho lo actualiza script.js) -->
+    <div class="barra-progreso" id="barraProgreso" aria-hidden="true"></div>
+
+    <!-- Enlace para saltar directo al contenido con el teclado -->
+    <a class="skip-enlace" href="#caracteristicas">Saltar al contenido</a>
 
     <!-- ============================================================
          HEADER / NAVBAR
          ============================================================
          Navegación principal con logo a la izquierda y enlaces
-         a la derecha. En móvil se colapsa con botón hamburguesa. -->
+         a la derecha. El enlace de la sección visible se marca
+         automáticamente (ScrollSpy) y el botón Reservar abre el modal. -->
     <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary" id="navPrincipal" aria-label="Navegación principal">
             <div class="container-fluid px-3 px-lg-5">
 
                 <!-- Logo a la izquierda -->
-                <a class="navbar-brand" href="index.html">
-                    <img src="assets/img/logo relmu.webp" width="auto" height="50" alt="Logo Relmu">
+                <a class="navbar-brand" href="#inicio">
+                    <img src="assets/img/logo relmu.webp" width="184" height="67" alt="Logo Relmu">
                 </a>
 
                 <!-- Botón menú móvil (hamburguesa) -->
@@ -55,7 +82,7 @@
                     <ul class="navbar-nav ms-auto mb-2 align-items-center gap-3 mb-lg-0">
 
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.html">
+                            <a class="nav-link active" aria-current="page" href="#inicio">
                                 Inicio
                             </a>
                         </li>
@@ -67,25 +94,28 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#atractivos_turisticos">
-                                Atractivos Turísticos
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#reglamento">
-                                Reglamento
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
                             <a class="nav-link" href="#ubicacion">
                                 Ubicación
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <button>Reservar</button>
+                            <a class="nav-link" href="#atractivos_turisticos">
+                                Atractivos Turísticos
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#faq">
+                                Información
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <button class="btn-reservar" type="button" data-bs-toggle="modal"
+                                data-bs-target="#modalReserva">
+                                <i class="bi bi-calendar-check"></i> Reservar
+                            </button>
                         </li>
 
                     </ul>
@@ -98,51 +128,43 @@
     <main>
 
         <!-- ============================================================
-             SECCIÓN HERO (banner + carrusel)
+             SECCIÓN HERO (carrusel cinematográfico)
              ============================================================
-             Carrusel de imágenes de fondo con texto superpuesto
-             centrado. Incluye botones de acción (Reservar, Ver Cabañas,
-             Ubicación). El overlay oscuro del SCSS mejora la legibilidad. -->
-        <section class="hero position-relative">
+             Carrusel de fotografías de las cabañas con movimiento lento
+             (efecto Ken Burns) y texto superpuesto que entra escalonado.
+             Los botones llevan a reservar, a las cabañas y al mapa. -->
+        <section class="hero" id="inicio">
 
-            <!-- Texto superpuesto sobre el carrusel -->
-            <div class="texto-hero container-fluid text-center">
-                <h3>Sector Lluncura, Panguipulli · Región de Los Ríos</h3>
-                <h1>CENTRO VACACIONAL RELMU</h1>
-                <h2>Un lugar para compartir y descansar</h2>
+            <!-- Carrusel de fondo: 3 slides con encuadres y movimientos distintos -->
+            <div id="hero" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="7000">
 
-                <ul class="botones d-flex justify-content-center gap-4 list-unstyled mt-4">
-                    <li><button>Reservar</button></li>
-                    <li><button class="botones-hero-secundarios">Ver Cabañas</button></li>
-                    <li><button class="botones-hero-secundarios">Ubicación</button></li>
-                </ul>
-            </div>
-
-            <!-- Carrusel Bootstrap con 3 slides (misma imagen placeholder) -->
-            <div id="hero" class="carousel slide">
-
-                <!-- Indicadores (puntitos inferiores) -->
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#hero" data-bs-slide-to="0" class="active" aria-current="true"
-                        aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#hero" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#hero" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#hero" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Foto 1"></button>
+                    <button type="button" data-bs-target="#hero" data-bs-slide-to="1" aria-label="Foto 2"></button>
+                    <button type="button" data-bs-target="#hero" data-bs-slide-to="2" aria-label="Foto 3"></button>
                 </div>
 
-                <!-- Slides del carrusel -->
                 <div class="carousel-inner imagen-banner">
-                    <div class="carousel-item active">
-                        <img src="assets/img/banner.png" class="d-block w-100" alt="Centro Vacacional Relmu">
+                    <div class="carousel-item active" data-bs-interval="7000">
+                        <img src="assets/img/banner.webp" srcset="assets/img/banner-960.webp 960w, assets/img/banner.webp 1821w"
+                            sizes="100vw" class="slide-a" width="1821" height="864" fetchpriority="high"
+                            alt="Cabañas de madera de Relmu con terraza y jardín de hortensias">
                     </div>
-                    <div class="carousel-item">
-                        <img src="assets/img/banner.png" class="d-block w-100" alt="Centro Vacacional Relmu">
+
+                    <div class="carousel-item" data-bs-interval="7000">
+                        <img src="assets/img/banner.webp" srcset="assets/img/banner-960.webp 960w, assets/img/banner.webp 1821w"
+                            sizes="100vw" class="slide-b" width="1821" height="864" loading="lazy"
+                            alt="Quincho de madera con mesa y sombrilla en el jardín de Relmu">
                     </div>
-                    <div class="carousel-item">
-                        <img src="assets/img/banner.png" class="d-block w-100" alt="Centro Vacacional Relmu">
+
+                    <div class="carousel-item" data-bs-interval="7000">
+                        <img src="assets/img/banner.webp" srcset="assets/img/banner-960.webp 960w, assets/img/banner.webp 1821w"
+                            sizes="100vw" class="slide-c" width="1821" height="864" loading="lazy"
+                            alt="Vista de las cabañas de madera y el entorno de Relmu">
                     </div>
                 </div>
 
-                <!-- Flechas de navegación del carrusel -->
                 <button class="carousel-control-prev" type="button" data-bs-target="#hero" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Anterior</span>
@@ -152,28 +174,105 @@
                     <span class="visually-hidden">Siguiente</span>
                 </button>
             </div>
+
+            <!-- Texto superpuesto sobre el carrusel -->
+            <div class="texto-hero container">
+                <p class="hero-etiqueta">
+                    <i class="bi bi-geo-alt-fill"></i> Sector Lluncura, Panguipulli · Región de Los Ríos
+                </p>
+
+                <h1>Centro Vacacional Relmu</h1>
+
+                <p class="hero-tagline">Un lugar para compartir y descansar</p>
+
+                <p class="hero-bajada d-none d-lg-block">
+                    Cabañas de madera rodeadas de bosque nativo, a minutos de las termas y lagos
+                    de la zona. Un espacio simple y cálido para descansar en pareja, en familia o con amigos.
+                </p>
+
+                <ul class="botones d-flex justify-content-center gap-4 list-unstyled mt-4">
+                    <li>
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#modalReserva">
+                            Reservar
+                        </button>
+                    </li>
+                    <li>
+                        <a class="btn botones-hero-secundarios" href="#cabanas">Ver Cabañas</a>
+                    </li>
+                    <li>
+                        <a class="btn botones-hero-secundarios" href="#ubicacion">Ubicación</a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             DATOS RÁPIDOS (contadores animados)
+             ============================================================
+             Franja que se superpone al hero y resume lo esencial del
+             centro. Los números se cuentan al entrar en pantalla. -->
+        <section class="container datos-rapidos reveal" aria-label="Datos rápidos de Relmu">
+            <div class="row text-center g-3">
+
+                <div class="col-6 col-md-3">
+                    <div class="dato">
+                        <i class="bi bi-house-door" aria-hidden="true"></i>
+                        <span class="dato-numero" data-contador="3">3</span>
+                        <span class="dato-texto">Tipos de alojamiento</span>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-3">
+                    <div class="dato">
+                        <i class="bi bi-people" aria-hidden="true"></i>
+                        <span class="dato-numero" data-contador="12">12</span>
+                        <span class="dato-texto">Huéspedes como máximo</span>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-3">
+                    <div class="dato">
+                        <i class="bi bi-thermometer-sun" aria-hidden="true"></i>
+                        <span class="dato-numero" data-contador="5">5</span>
+                        <span class="dato-texto">Termas y centros cercanos</span>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-3">
+                    <div class="dato">
+                        <i class="bi bi-cash-coin" aria-hidden="true"></i>
+                        <span class="dato-numero" data-contador="40000" data-prefijo="$" data-miles="true">$40.000</span>
+                        <span class="dato-texto">Valor por noche desde</span>
+                    </div>
+                </div>
+
+            </div>
         </section>
 
         <!-- ============================================================
              SECCIÓN CARACTERÍSTICAS
              ============================================================
              Tarjetas con ícono circular que muestran las comodidades
-             de las cabañas. 4 columnas en escritorio, se apilan en
-             móvil con separación vertical. -->
-        <section class="caracteristicas mt-5 container text-center reveal">
-            <div class="row">
+             de las cabañas. Las imágenes hacen zoom y el ícono gira
+             suavemente al pasar el mouse. -->
+        <section id="caracteristicas" class="caracteristicas mt-5 container reveal">
+            <div class="titulo-seccion">
+                <span class="etiqueta">Comodidades</span>
                 <h2>Una Estadía Para Disfrutar</h2>
                 <h3>Espacios pensados para descansar, compartir y disfrutar de tu estadía con comodidad, ya sea en
                     pareja, en familia o junto a un grupo de amigos.</h3>
+                <span class="divisor" aria-hidden="true"></span>
             </div>
+
             <div class="row mt-4 g-4">
 
                 <!-- Tarjeta: Cocina equipada -->
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-3 col-sm-6 reveal" style="--reveal-delay: 0s">
                     <div class="imagen-tarjeta position-relative">
-                        <img src="assets/img/cocina.png" class="d-block w-100" alt="Cocina equipada">
+                        <img src="assets/img/cocina.webp" class="d-block w-100" width="700" height="467" loading="lazy"
+                            alt="Cocina equipada de las cabañas">
                         <div class="icono-circular">
-                            <img src="assets/img/cooking.png" alt="">
+                            <img src="assets/img/icono-cocina.webp" width="256" height="256" loading="lazy" alt="">
                         </div>
                     </div>
                     <h4>Cocina equipada</h4>
@@ -181,11 +280,12 @@
                 </div>
 
                 <!-- Tarjeta: TV Cable -->
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-3 col-sm-6 reveal" style="--reveal-delay: 0.1s">
                     <div class="imagen-tarjeta position-relative">
-                        <img src="assets/img/tv-cable.png" class="d-block w-100" alt="TV Cable">
+                        <img src="assets/img/tv-cable.webp" class="d-block w-100" width="700" height="467"
+                            loading="lazy" alt="Sala con TV cable">
                         <div class="icono-circular">
-                            <img src="assets/img/television(1).png" alt="">
+                            <img src="assets/img/icono-tv.webp" width="256" height="256" loading="lazy" alt="">
                         </div>
                     </div>
                     <h4>TV Cable</h4>
@@ -193,11 +293,12 @@
                 </div>
 
                 <!-- Tarjeta: Terraza -->
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-3 col-sm-6 reveal" style="--reveal-delay: 0.2s">
                     <div class="imagen-tarjeta position-relative">
-                        <img src="assets/img/terraza.png" class="d-block w-100" alt="Terraza">
+                        <img src="assets/img/terraza.webp" class="d-block w-100" width="700" height="467"
+                            loading="lazy" alt="Terraza y quincho de las cabañas">
                         <div class="icono-circular">
-                            <img src="assets/img/barbecue.png" alt="">
+                            <img src="assets/img/icono-terraza.webp" width="256" height="256" loading="lazy" alt="">
                         </div>
                     </div>
                     <h4>Terraza</h4>
@@ -205,11 +306,12 @@
                 </div>
 
                 <!-- Tarjeta: Baño -->
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-3 col-sm-6 reveal" style="--reveal-delay: 0.3s">
                     <div class="imagen-tarjeta position-relative">
-                        <img src="assets/img/bano.png" class="d-block w-100" alt="Baño equipado">
+                        <img src="assets/img/bano.webp" class="d-block w-100" width="700" height="467" loading="lazy"
+                            alt="Baño equipado de las cabañas">
                         <div class="icono-circular">
-                            <img src="assets/img/shower.png" alt="">
+                            <img src="assets/img/icono-bano.webp" width="256" height="256" loading="lazy" alt="">
                         </div>
                     </div>
                     <h4>Baño</h4>
@@ -222,122 +324,194 @@
              SECCIÓN CABAÑAS
              ============================================================
              Muestra los 3 tipos de cabaña con imagen, badge de
-             capacidad, precio y botón "Ver Detalles". Incluye
-             tabla de tarifas por noche con notas de reserva. -->
+             capacidad, precio y botón "Ver Detalles" que abre un modal
+             con la información completa de cada alojamiento. -->
         <section id="cabanas" class="cabanas mt-5 pt-5 pb-5 reveal">
             <div class="container">
 
-                <!-- Títulos de la sección -->
-                <div class="row text-center">
+                <div class="titulo-seccion">
+                    <span class="etiqueta">Alojamientos</span>
                     <h2>Nuestras Cabañas</h2>
-                    <h3>Encuentra tu espacio en Relmu</h3>
+                    <h3>Encuentra tu espacio en Relmu: tres alternativas de madera para parejas, familias
+                        y grupos grandes.</h3>
+                    <span class="divisor" aria-hidden="true"></span>
                 </div>
 
                 <!-- Tarjetas de cabañas -->
                 <div class="row text-center g-4 mt-2">
 
                     <!-- Cabaña Pequeña -->
-                    <div class="col-md-4">
-                        <div class="cabana-img">
-                            <span class="badge-capacidad">
-                                <i class="bi bi-people"></i> 2 a 3 Personas
-                            </span>
-                            <img src="assets/img/cabana-pequena.png" class="d-block w-100" alt="Cabañas Pequeñas">
-                        </div>
-                        <h4 class="mt-1">Cabañas Pequeñas</h4>
-                        <p>Desde<span class="span-precio"> $40.000</span> la noche</p>
-                        <button>Ver Detalles</button>
+                    <div class="col-md-4 reveal" style="--reveal-delay: 0s">
+                        <article class="tarjeta-cabana">
+                            <div class="cabana-img">
+                                <span class="badge-capacidad">
+                                    <i class="bi bi-people"></i> 2 a 3 Personas
+                                </span>
+                                <img src="assets/img/cabana-pequena.webp" class="d-block w-100" width="900"
+                                    height="599" loading="lazy" alt="Cabañas pequeñas de Relmu">
+                            </div>
+                            <h4>Cabañas Pequeñas</h4>
+                            <p class="cabana-precio">Desde<span class="span-precio"> $40.000</span> la noche</p>
+                            <button type="button" class="boton-icono" data-bs-toggle="modal"
+                                data-bs-target="#modalCabana" data-cabana="pequena">
+                                Ver Detalles <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                            </button>
+                        </article>
                     </div>
 
                     <!-- Cabaña Grande -->
-                    <div class="col-md-4">
-                        <div class="cabana-img">
-                            <span class="badge-capacidad">
-                                <i class="bi bi-people"></i> 4 a 8 Personas
-                            </span>
-                            <img src="assets/img/cabana-grande.png" class="d-block w-100" alt="Cabañas Grandes">
-                        </div>
-                        <h4 class="mt-1">Cabañas Grandes</h4>
-                        <p>Desde<span class="span-precio"> $65.000</span> la noche</p>
-                        <button>Ver Detalles</button>
+                    <div class="col-md-4 reveal" style="--reveal-delay: 0.12s">
+                        <article class="tarjeta-cabana">
+                            <div class="cabana-img">
+                                <span class="badge-capacidad">
+                                    <i class="bi bi-people"></i> 4 a 8 Personas
+                                </span>
+                                <img src="assets/img/cabana-grande.webp" class="d-block w-100" width="900" height="599"
+                                    loading="lazy" alt="Cabañas grandes de Relmu">
+                            </div>
+                            <h4>Cabañas Grandes</h4>
+                            <p class="cabana-precio">Desde<span class="span-precio"> $65.000</span> la noche</p>
+                            <button type="button" class="boton-icono" data-bs-toggle="modal"
+                                data-bs-target="#modalCabana" data-cabana="grande">
+                                Ver Detalles <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                            </button>
+                        </article>
                     </div>
 
                     <!-- Casa Grande -->
-                    <div class="col-md-4">
-                        <div class="cabana-img">
-                            <span class="badge-capacidad">
-                                <i class="bi bi-people"></i> 9 a 12 Personas
-                            </span>
-                            <img src="assets/img/casa-grande.png" class="d-block w-100" alt="Casa Grande">
-                        </div>
-                        <h4 class="mt-1">Casa Grande</h4>
-                        <p>Desde<span class="span-precio"> $125.000</span> la noche</p>
-                        <button>Ver Detalles</button>
+                    <div class="col-md-4 reveal" style="--reveal-delay: 0.24s">
+                        <article class="tarjeta-cabana">
+                            <div class="cabana-img">
+                                <span class="badge-capacidad">
+                                    <i class="bi bi-people"></i> 9 a 12 Personas
+                                </span>
+                                <img src="assets/img/casa-grande.webp" class="d-block w-100" width="900" height="599"
+                                    loading="lazy" alt="Casa grande de Relmu">
+                            </div>
+                            <h4>Casa Grande</h4>
+                            <p class="cabana-precio">Desde<span class="span-precio"> $125.000</span> la noche</p>
+                            <button type="button" class="boton-icono" data-bs-toggle="modal"
+                                data-bs-target="#modalCabana" data-cabana="casa">
+                                Ver Detalles <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                            </button>
+                        </article>
                     </div>
 
                 </div>
 
-                <!-- Encabezado y notas de la tabla de tarifas -->
-                <div class="row mt-5">
-                    <div class="d-flex justify-content-between flex-column flex-md-row">
-                        <h2 class="w-100">Valores Por Noche</h2>
+                <!-- Valores por noche: tabla + notas de reserva -->
+                <div class="row mt-5 g-4">
+                    <div class="col-lg-8 reveal">
+                        <h2 class="mb-3">Valores Por Noche</h2>
+                        <div class="table-responsive">
+                            <table class="table tabla-tarifas">
+                                <caption class="visually-hidden">Valores por noche según tipo de alojamiento y número de
+                                    huéspedes</caption>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Alojamiento</th>
+                                        <th scope="col">Huéspedes</th>
+                                        <th scope="col">Precio por noche</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td data-titulo="Alojamiento">Cabaña Pequeña</td>
+                                        <td data-titulo="Huéspedes">2 Personas</td>
+                                        <td data-titulo="Precio">$40.000</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td data-titulo="Alojamiento">Cabaña Pequeña</td>
+                                        <td data-titulo="Huéspedes">3 Personas</td>
+                                        <td data-titulo="Precio">$47.000</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td data-titulo="Alojamiento">Cabaña Grande</td>
+                                        <td data-titulo="Huéspedes">4 a 5 Personas</td>
+                                        <td data-titulo="Precio">$65.000</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td data-titulo="Alojamiento">Cabaña Grande</td>
+                                        <td data-titulo="Huéspedes">6 a 8 Personas</td>
+                                        <td data-titulo="Precio">$80.000</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td data-titulo="Alojamiento">Casa Grande</td>
+                                        <td data-titulo="Huéspedes">9 a 12 Personas</td>
+                                        <td data-titulo="Precio">$125.000</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 reveal" style="--reveal-delay: 0.15s">
                         <div class="nota-tarifa">
-                            <p><span class="fw-bold">Reserva:</span> Las reservas se realizan cancelando el 30% del
-                                valor
-                                total</p>
-                            <p><span class="fw-bold">Menores:</span> Niños mayores de 2 años pagan su estadía. Solo un
-                                menor
-                                de 2
-                                años gratis. El segundo menor de 2 años debe contabilizarse dentro del valor</p>
+                            <h5 class="nota-titulo"><i class="bi bi-info-circle" aria-hidden="true"></i> Antes de
+                                reservar</h5>
+                            <p><span class="fw-bold">Reserva:</span> las reservas se realizan cancelando el 30% del
+                                valor total.</p>
+                            <p><span class="fw-bold">Menores:</span> niños mayores de 2 años pagan su estadía. Solo un
+                                menor de 2 años es gratis; el segundo menor de 2 años debe contabilizarse dentro del
+                                valor.</p>
+                            <button type="button" class="boton-icono mt-2" data-bs-toggle="modal"
+                                data-bs-target="#modalReserva">
+                                Consultar disponibilidad <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Tabla de tarifas (con scroll horizontal en móvil) -->
-                <div class="row">
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Alojamiento</th>
-                                    <th scope="col">Huespedes</th>
-                                    <th scope="col">Precio por noche</th>
-                                </tr>
-                            </thead>
+        <!-- ============================================================
+             PASOS DE RESERVA
+             ============================================================
+             Explica en tres tarjetas numeradas cómo reservar, usando la
+             información de reserva publicada en el sitio. -->
+        <section class="pasos reveal" id="reserva">
+            <div class="container">
+                <div class="titulo-seccion">
+                    <span class="etiqueta">Cómo reservar</span>
+                    <h2>Reserva en 3 Pasos</h2>
+                    <h3>Un proceso simple y directo, sin intermediarios: nos escribes, confirmas y listo.</h3>
+                    <span class="divisor" aria-hidden="true"></span>
+                </div>
 
-                            <tbody>
-                                <tr>
-                                    <td>Cabaña Pequeña</td>
-                                    <td>2 Personas</td>
-                                    <td>$40.000</td>
-                                </tr>
+                <div class="row g-4 mt-2">
 
-                                <tr>
-                                    <td>Cabaña Pequeña</td>
-                                    <td>3 Personas</td>
-                                    <td>$47.000</td>
-                                </tr>
-
-                                <tr>
-                                    <td>Cabaña Grande</td>
-                                    <td>4 a 5 Personas</td>
-                                    <td>$65.000</td>
-                                </tr>
-
-                                <tr>
-                                    <td>Cabaña Grande</td>
-                                    <td>6 a 8 Personas</td>
-                                    <td>$80.000</td>
-                                </tr>
-
-                                <tr>
-                                    <td>Casa Grande</td>
-                                    <td>9 a 12 Personas</td>
-                                    <td>$125.000</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="col-md-4 reveal" style="--reveal-delay: 0s">
+                        <div class="paso">
+                            <span class="paso-numero" aria-hidden="true">1</span>
+                            <h4>Consulta disponibilidad</h4>
+                            <p>Escríbenos por teléfono o correo con las fechas de tu estadía y la cantidad de
+                                personas. Te confirmamos qué cabaña se ajusta mejor a tu grupo.</p>
+                        </div>
                     </div>
+
+                    <div class="col-md-4 reveal" style="--reveal-delay: 0.15s">
+                        <div class="paso">
+                            <span class="paso-numero" aria-hidden="true">2</span>
+                            <h4>Confirma tu reserva</h4>
+                            <p>La reserva se asegura cancelando el 30% del valor total. Con eso dejamos tu cabaña
+                                apartada para la fecha solicitada.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 reveal" style="--reveal-delay: 0.3s">
+                        <div class="paso">
+                            <span class="paso-numero" aria-hidden="true">3</span>
+                            <h4>¡Nos vemos en Relmu!</h4>
+                            <p>Nos encontramos en el km 8½ del camino Licán Ray – Coñaripe, a un costado de la
+                                carretera. Prepárate para descansar y compartir.</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -345,96 +519,385 @@
         <!-- ============================================================
              SECCIÓN UBICACIÓN
              ============================================================
-             Dos columnas: texto con indicaciones de cómo llegar a la
-             izquierda y mapa de Google Maps embebido a la derecha.
-             En móvil se apilan verticalmente. -->
+             Dos columnas: a la izquierda los datos y las indicaciones de
+             cómo llegar; a la derecha el mapa. Incluye accesos directos
+             para abrir la ruta en Google Maps y copiar la dirección. -->
         <section id="ubicacion" class="ubicacion reveal">
             <div class="row row-ubicacion justify-content-between">
 
-                <!-- Columna de texto con indicaciones -->
                 <div class="col-md-6 columna-ubicacion-texto">
                     <div class="ubicacion-texto">
+                        <span class="etiqueta">Cómo llegar</span>
                         <h2>Ubicación</h2>
                         <h3>Encuentra tu camino hasta Relmu</h3>
-                        <p>Centro Vacacional Relmu se encuentra en Camino Licán Ray a Coñaripe Km 8½, a un costado de la
-                            carretera.</p>
+
+                        <ul class="ubicacion-datos">
+                            <li>
+                                <i class="bi bi-signpost-split" aria-hidden="true"></i>
+                                <span>Camino Licán Ray a Coñaripe Km 8½, a un costado de la carretera.</span>
+                            </li>
+                            <li>
+                                <i class="bi bi-geo-alt" aria-hidden="true"></i>
+                                <span>Sector Lluncura, Panguipulli, Región de Los Ríos.</span>
+                            </li>
+                        </ul>
+
                         <h3>Desde Ruta 5 Sur</h3>
                         <p>En el km 696, toma la rotonda Freire con dirección a Villarrica. En Villarrica, toma Av. Juan
-                            Antonio Ríos hacia Licán Ray.
-
-                            Al entrar a Licán Ray encontrarás una bifurcación (cruz de madera). Toma la ruta hacia la
+                            Antonio Ríos hacia Licán Ray.</p>
+                        <p>Al entrar a Licán Ray encontrarás una bifurcación (cruz de madera). Toma la ruta hacia la
                             izquierda en dirección a Coñaripe y continúa hasta el km 8½. Relmu se encuentra a mano
-                            derecha,
-                            a un costado de la carretera.</p>
-                        <button>Fijar Ruta</button>
+                            derecha, a un costado de la carretera.</p>
+
+                        <div class="ubicacion-acciones">
+                            <a class="boton-primario boton-icono"
+                                href="https://www.google.com/maps/dir/?api=1&destination=-39.511639,-72.083750"
+                                target="_blank" rel="noopener">
+                                <i class="bi bi-signpost-2" aria-hidden="true"></i> Fijar Ruta
+                            </a>
+                            <button type="button" class="boton-crema" id="btnCopiarDireccion"
+                                data-direccion="Camino Licán Ray a Coñaripe Km 8½, Sector Lluncura, Panguipulli, Región de Los Ríos">
+                                <i class="bi bi-clipboard" aria-hidden="true"></i> Copiar dirección
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Columna con mapa embebido de Google Maps -->
-                <div class="col-md-6 columna-ubicacion-texto">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d6156.060724571984!2d-72.08340207144167!3d-39.513804421962234!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMznCsDMwJzQxLjkiUyA3MsKwMDUnMDEuNSJX!5e0!3m2!1ses!2scl!4v1790347915825!5m2!1ses!2scl"
-                        width="100%" height="100%" style="border:0; min-height: 400px;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                <div class="col-md-6 columna-ubicacion-mapa">
+                    <div class="mapa-marco">
+                        <iframe title="Mapa de ubicación del Centro Vacacional Relmu"
+                            src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d6156.060724571984!2d-72.08340207144167!3d-39.513804421962234!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMznCsDMwJzQxLjkiUyA3MsKwMDUnMDEuNSJX!5e0!3m2!1ses!2scl!4v1790347915825!5m2!1ses!2scl"
+                            allowfullscreen="" loading="lazy"
+                            referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                    </div>
                 </div>
 
             </div>
         </section>
 
+        <!-- Aviso flotante que confirma al copiar la dirección -->
+        <div class="aviso-copiado" id="avisoCopiado" role="status" aria-live="polite">
+            <i class="bi bi-check-circle-fill" aria-hidden="true"></i> Dirección copiada
+        </div>
+
         <!-- ============================================================
              SECCIÓN ATRACTIVOS TURÍSTICOS
              ============================================================
-             Galería horizontal de lugares cercanos para visitar.
-             Incluye botones de filtro (Termas / Lagos / Alrededores).
-             En móvil la galería permite scroll horizontal. -->
+             Galería filtrable por categoría. Cada tarjeta enlaza a
+             Google Maps para ver el lugar y planificar la visita. -->
         <section id="atractivos_turisticos" class="atractivos mt-5 container reveal">
-            <div class="row text-center">
-                <div class="offset-md-2 col-md-8">
-                    <h2>Atractivos Turísticos</h2>
-                    <h3>Durante tu estadía también puedes conocer distintos lugares y experiencias que ofrece la zona
-                    </h3>
-                    <div class="botones-atractivos d-flex justify-content-center gap-3 gap-md-5 mt-3 flex-wrap">
-                        <button>Termas</button>
-                        <button class="apagado">Lagos</button>
-                        <button class="apagado">Alrededores</button>
-                    </div>
-                </div>
+            <div class="titulo-seccion">
+                <span class="etiqueta">Qué visitar</span>
+                <h2>Atractivos Turísticos</h2>
+                <h3>Durante tu estadía también puedes conocer distintos lugares y experiencias que ofrece la zona.</h3>
+                <span class="divisor" aria-hidden="true"></span>
             </div>
 
-            <!-- Galería de atractivos (scroll horizontal en móvil) -->
+            <!-- Filtros de la galería -->
+            <div class="botones-atractivos d-flex justify-content-center gap-3 gap-md-5 mt-3 flex-wrap" role="group"
+                aria-label="Filtrar atractivos por categoría">
+                <button type="button" class="filtro activo" data-filtro="termas" aria-pressed="true">Termas</button>
+                <button type="button" class="filtro apagado" data-filtro="lagos" aria-pressed="false">Lagos</button>
+                <button type="button" class="filtro apagado" data-filtro="alrededores"
+                    aria-pressed="false">Alrededores</button>
+            </div>
+
+            <!-- Galería: Termas -->
             <div class="row mt-4">
-                <ul class="d-flex text-center justify-content-evenly list-unstyled flex-nowrap flex-md-wrap">
-                    <li><img src="assets/img/terma-el-rincon.png" alt="Termas El Rincón">
-                        <p>Termas El Rincón</p>
+                <ul class="lista-atractivos" id="galeria-atractivos" data-categoria-activa="termas">
+                    <li class="atractivo" data-categoria="termas">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Termas%20El%20Rinc%C3%B3n%20Panguipulli"
+                            target="_blank" rel="noopener" title="Ver Termas El Rincón en Google Maps">
+                            <span class="atractivo-media">
+                                <img src="assets/img/terma-el-rincon.webp" width="400" height="400" loading="lazy"
+                                    alt="Logo de Termas El Rincón">
+                            </span>
+                            <span class="atractivo-nombre">Termas El Rincón</span>
+                            <span class="atractivo-mapa"><i class="bi bi-geo-alt" aria-hidden="true"></i> Ver en
+                                mapa</span>
+                        </a>
                     </li>
-                    <li><img src="assets/img/terma-conaripe.png" alt="Termas Coñaripe">
-                        <p>Termas Coñaripe</p>
+
+                    <li class="atractivo" data-categoria="termas">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Termas%20de%20Co%C3%B1aripe"
+                            target="_blank" rel="noopener" title="Ver Termas Coñaripe en Google Maps">
+                            <span class="atractivo-media">
+                                <img src="assets/img/terma-conaripe.webp" width="400" height="400" loading="lazy"
+                                    alt="Logo de Termas Coñaripe">
+                            </span>
+                            <span class="atractivo-nombre">Termas Coñaripe</span>
+                            <span class="atractivo-mapa"><i class="bi bi-geo-alt" aria-hidden="true"></i> Ver en
+                                mapa</span>
+                        </a>
                     </li>
-                    <li><img src="assets/img/terma-vergara.png" alt="Termas Vergara">
-                        <p>Termas Vergara</p>
+
+                    <li class="atractivo" data-categoria="termas">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Termas%20Vergara%20Panguipulli"
+                            target="_blank" rel="noopener" title="Ver Termas Vergara en Google Maps">
+                            <span class="atractivo-media">
+                                <img src="assets/img/terma-vergara.webp" width="400" height="400" loading="lazy"
+                                    alt="Logo de Termas Vergara">
+                            </span>
+                            <span class="atractivo-nombre">Termas Vergara</span>
+                            <span class="atractivo-mapa"><i class="bi bi-geo-alt" aria-hidden="true"></i> Ver en
+                                mapa</span>
+                        </a>
                     </li>
-                    <li><img src="assets/img/eco-terma-pellaifa.png" alt="Eco Termas Pellaifa">
-                        <p>Eco Termas Pellaifa</p>
+
+                    <li class="atractivo" data-categoria="termas">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Eco%20Termas%20Pellaifa"
+                            target="_blank" rel="noopener" title="Ver Eco Termas Pellaifa en Google Maps">
+                            <span class="atractivo-media">
+                                <img src="assets/img/eco-terma-pellaifa.webp" width="400" height="400" loading="lazy"
+                                    alt="Logo de Eco Termas Pellaifa">
+                            </span>
+                            <span class="atractivo-nombre">Eco Termas Pellaifa</span>
+                            <span class="atractivo-mapa"><i class="bi bi-geo-alt" aria-hidden="true"></i> Ver en
+                                mapa</span>
+                        </a>
                     </li>
-                    <li><img src="assets/img/terma-geometrica.png" alt="Termas Geométricas">
-                        <p>Termas Geométricas</p>
+
+                    <li class="atractivo" data-categoria="termas">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Termas%20Geom%C3%A9tricas%20Co%C3%B1aripe"
+                            target="_blank" rel="noopener" title="Ver Termas Geométricas en Google Maps">
+                            <span class="atractivo-media">
+                                <img src="assets/img/terma-geometrica.webp" width="400" height="400" loading="lazy"
+                                    alt="Logo de Termas Geométricas">
+                            </span>
+                            <span class="atractivo-nombre">Termas Geométricas</span>
+                            <span class="atractivo-mapa"><i class="bi bi-geo-alt" aria-hidden="true"></i> Ver en
+                                mapa</span>
+                        </a>
+                    </li>
+
+                    <!-- Lagos: se ocultan hasta elegir la categoría -->
+                    <li class="atractivo" data-categoria="lagos" hidden>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Lago%20Calafqu%C3%A9n"
+                            target="_blank" rel="noopener" title="Ver Lago Calafquén en Google Maps">
+                            <span class="atractivo-media">
+                                <i class="bi bi-water" aria-hidden="true"></i>
+                            </span>
+                            <span class="atractivo-nombre">Lago Calafquén</span>
+                            <span class="atractivo-mapa"><i class="bi bi-geo-alt" aria-hidden="true"></i> Ver en
+                                mapa</span>
+                        </a>
+                    </li>
+
+                    <li class="atractivo" data-categoria="lagos" hidden>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Lago%20Panguipulli" target="_blank"
+                            rel="noopener" title="Ver Lago Panguipulli en Google Maps">
+                            <span class="atractivo-media">
+                                <i class="bi bi-water" aria-hidden="true"></i>
+                            </span>
+                            <span class="atractivo-nombre">Lago Panguipulli</span>
+                            <span class="atractivo-mapa"><i class="bi bi-geo-alt" aria-hidden="true"></i> Ver en
+                                mapa</span>
+                        </a>
+                    </li>
+
+                    <li class="atractivo" data-categoria="lagos" hidden>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Lago%20Villarrica" target="_blank"
+                            rel="noopener" title="Ver Lago Villarrica en Google Maps">
+                            <span class="atractivo-media">
+                                <i class="bi bi-water" aria-hidden="true"></i>
+                            </span>
+                            <span class="atractivo-nombre">Lago Villarrica</span>
+                            <span class="atractivo-mapa"><i class="bi bi-geo-alt" aria-hidden="true"></i> Ver en
+                                mapa</span>
+                        </a>
+                    </li>
+
+                    <!-- Alrededores -->
+                    <li class="atractivo" data-categoria="alrededores" hidden>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Volc%C3%A1n%20Villarrica" target="_blank"
+                            rel="noopener" title="Ver Volcán Villarrica en Google Maps">
+                            <span class="atractivo-media">
+                                <i class="bi bi-triangle" aria-hidden="true"></i>
+                            </span>
+                            <span class="atractivo-nombre">Volcán Villarrica</span>
+                            <span class="atractivo-mapa"><i class="bi bi-geo-alt" aria-hidden="true"></i> Ver en
+                                mapa</span>
+                        </a>
+                    </li>
+
+                    <li class="atractivo" data-categoria="alrededores" hidden>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Parque%20Nacional%20Villarrica"
+                            target="_blank" rel="noopener" title="Ver Parque Nacional Villarrica en Google Maps">
+                            <span class="atractivo-media">
+                                <i class="bi bi-tree-fill" aria-hidden="true"></i>
+                            </span>
+                            <span class="atractivo-nombre">Parque Nacional Villarrica</span>
+                            <span class="atractivo-mapa"><i class="bi bi-geo-alt" aria-hidden="true"></i> Ver en
+                                mapa</span>
+                        </a>
+                    </li>
+
+                    <li class="atractivo" data-categoria="alrededores" hidden>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Lic%C3%A1n%20Ray%20Playa%20Grande"
+                            target="_blank" rel="noopener" title="Ver Licán Ray en Google Maps">
+                            <span class="atractivo-media">
+                                <i class="bi bi-umbrella" aria-hidden="true"></i>
+                            </span>
+                            <span class="atractivo-nombre">Licán Ray y sus playas</span>
+                            <span class="atractivo-mapa"><i class="bi bi-geo-alt" aria-hidden="true"></i> Ver en
+                                mapa</span>
+                        </a>
                     </li>
                 </ul>
             </div>
 
+            <p class="creditos-atractivos">
+                Los logos de las termas pertenecen a cada centro. Los enlaces abren Google Maps para ver la ubicación
+                y planificar tu visita.
+            </p>
+        </section>
+
+        <!-- ============================================================
+             INFORMACIÓN / PREGUNTAS FRECUENTES
+             ============================================================
+             Acordeón con las dudas más comunes sobre reservas, valores,
+             capacidad y ubicación, usando la información publicada en el
+             propio sitio. -->
+        <section id="faq" class="faq mt-5 reveal">
+            <div class="container">
+                <div class="titulo-seccion">
+                    <span class="etiqueta">Información</span>
+                    <h2>Preguntas Frecuentes</h2>
+                    <h3>Todo lo que necesitas saber antes de tu estadía en Relmu. Si te queda alguna duda,
+                        escríbenos y te respondemos a la brevedad.</h3>
+                    <span class="divisor" aria-hidden="true"></span>
+                </div>
+
+                <div class="accordion" id="acordeonInformacion">
+
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="pregunta1">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#respuesta1" aria-expanded="true" aria-controls="respuesta1">
+                                ¿Cómo puedo reservar una cabaña?
+                            </button>
+                        </h3>
+                        <div id="respuesta1" class="accordion-collapse collapse show" aria-labelledby="pregunta1"
+                            data-bs-parent="#acordeonInformacion">
+                            <div class="accordion-body">
+                                Nos escribes por teléfono o correo con las fechas y la cantidad de personas, y te
+                                confirmamos disponibilidad. La reserva queda asegurada cancelando el 30% del valor
+                                total.
+                                <a href="#contacto" data-bs-toggle="modal" data-bs-target="#modalReserva">Ver datos de
+                                    contacto</a>.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="pregunta2">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#respuesta2" aria-expanded="false" aria-controls="respuesta2">
+                                ¿Cuáles son los valores por noche?
+                            </button>
+                        </h3>
+                        <div id="respuesta2" class="accordion-collapse collapse" aria-labelledby="pregunta2"
+                            data-bs-parent="#acordeonInformacion">
+                            <div class="accordion-body">
+                                Los valores comienzan en $40.000 la noche para 2 personas en cabaña pequeña, $65.000
+                                para 4 a 5 personas en cabaña grande y $125.000 para 9 a 12 personas en la casa grande.
+                                Revisa la tabla completa en la sección <a href="#cabanas">Nuestras Cabañas</a>.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="pregunta3">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#respuesta3" aria-expanded="false" aria-controls="respuesta3">
+                                ¿Cuántas personas pueden alojarse?
+                            </button>
+                        </h3>
+                        <div id="respuesta3" class="accordion-collapse collapse" aria-labelledby="pregunta3"
+                            data-bs-parent="#acordeonInformacion">
+                            <div class="accordion-body">
+                                Contamos con cabañas para 2 a 3 personas, cabañas grandes para 4 a 8 personas y una casa
+                                grande para 9 a 12 personas. Cuéntanos cuántos son y te recomendamos la mejor opción.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="pregunta4">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#respuesta4" aria-expanded="false" aria-controls="respuesta4">
+                                ¿Los niños pagan estadía?
+                            </button>
+                        </h3>
+                        <div id="respuesta4" class="accordion-collapse collapse" aria-labelledby="pregunta4"
+                            data-bs-parent="#acordeonInformacion">
+                            <div class="accordion-body">
+                                Los niños mayores de 2 años pagan su estadía. Solo un menor de 2 años es gratis; si
+                                viajas con un segundo menor de 2 años, debe contabilizarse dentro del valor.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="pregunta5">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#respuesta5" aria-expanded="false" aria-controls="respuesta5">
+                                ¿Qué incluyen las cabañas?
+                            </button>
+                        </h3>
+                        <div id="respuesta5" class="accordion-collapse collapse" aria-labelledby="pregunta5"
+                            data-bs-parent="#acordeonInformacion">
+                            <div class="accordion-body">
+                                Cada cabaña cuenta con cocina americana equipada, TV cable, terraza para disfrutar al
+                                aire libre y baño equipado. Los espacios están pensados para descansar y compartir
+                                cómodamente.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="pregunta6">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#respuesta6" aria-expanded="false" aria-controls="respuesta6">
+                                ¿Dónde está ubicado Relmu y cómo llego?
+                            </button>
+                        </h3>
+                        <div id="respuesta6" class="accordion-collapse collapse" aria-labelledby="pregunta6"
+                            data-bs-parent="#acordeonInformacion">
+                            <div class="accordion-body">
+                                Estamos en el Camino Licán Ray a Coñaripe Km 8½, sector Lluncura, Panguipulli, a un
+                                costado de la carretera. Desde la Ruta 5 Sur, en el km 696 toma la rotonda Freire hacia
+                                Villarrica y luego Av. Juan Antonio Ríos hacia Licán Ray. En <a
+                                    href="#ubicacion">Ubicación</a> encontrarás el mapa y el botón para fijar la ruta.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </section>
 
         <!-- ============================================================
              BANNER FINAL (call to action)
              ============================================================
              Sección con imagen de fondo y overlay oscuro que invita
-             al usuario a reservar. Texto centrado con botón. -->
-        <section class="banner-final container-fluid text-center reveal">
+             al usuario a reservar. -->
+        <section class="banner-final container-fluid text-center reveal" id="contacto">
             <div class="row">
                 <div class="col-md-12">
+                    <span class="banner-detalle" aria-hidden="true"></span>
                     <h2>¿Listo para reservar?</h2>
                     <p>Comunícate directamente con nosotros y consulta disponibilidad para tu próxima estadía.</p>
-                    <button>Reservar</button>
+                    <div class="botones-banner">
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#modalReserva">
+                            <i class="bi bi-calendar-check" aria-hidden="true"></i> Reservar
+                        </button>
+                        <a class="btn boton-crema"
+                            href="https://www.google.com/maps/dir/?api=1&destination=-39.511639,-72.083750"
+                            target="_blank" rel="noopener">
+                            <i class="bi bi-signpost-2" aria-hidden="true"></i> Fijar Ruta
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -444,41 +907,188 @@
          FOOTER
          ============================================================
          Pie de página con 3 columnas: logo y descripción, enlaces
-         rápidos, y datos de contacto. En móvil se apilan verticalmente. -->
+         rápidos, y datos de contacto. El año del copyright se
+         actualiza automáticamente desde script.js. -->
     <footer class="reveal">
-        <div class="container">
+        <div class="container" data-anio="2026">
             <div class="row g-4">
 
                 <!-- Columna 1: Logo y descripción -->
                 <div class="col-md-4">
-                    <a href="index.html"><img src="assets/img/logo relmu.webp" alt="Logo Relmu"></a>
+                    <a class="footer-logo" href="#inicio">
+                        <img src="assets/img/logo relmu.webp" width="184" height="67" loading="lazy" alt="Logo Relmu">
+                    </a>
                     <p>Un lugar para compartir y descansar.</p>
-                    <p>desarrollado por <a href="https://github.com/Martinn2002" target="_blank">Martín Pérez</a></p>
+                    <p>Desarrollado por <a href="https://github.com/Martinn2002" target="_blank"
+                            rel="noopener">Martín Pérez</a></p>
                 </div>
 
                 <!-- Columna 2: Enlaces rápidos -->
                 <div class="col-md-4">
                     <h5>Enlaces Rápidos</h5>
                     <ul class="list-unstyled">
-                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="#inicio">Inicio</a></li>
                         <li><a href="#cabanas">Cabañas</a></li>
-                        <li><a href="#atractivos_turisticos">Atractivos Turisticos</a></li>
-                        <li><a href="#reglamento">Reglamento</a></li>
                         <li><a href="#ubicacion">Ubicación</a></li>
+                        <li><a href="#atractivos_turisticos">Atractivos Turísticos</a></li>
+                        <li><a href="#faq">Información</a></li>
                     </ul>
                 </div>
 
                 <!-- Columna 3: Contacto y reservas -->
-                <div class="col-md-4">
+                <div class="col-md-4 footer-contacto">
                     <h5>Contacto y Reservas</h5>
-                    <p><i class="bi bi-geo-alt"></i> Camino Licán Ray a Coñaripe Km 8½, Panguipulli, Región de
-                        Los Ríos</p>
-                    <p><i class="bi bi-telephone"></i> +54 9 11 1234-5678</p>
-                    <p><i class="bi bi-envelope"></i> info@relmu.com</p>
+                    <p><i class="bi bi-geo-alt" aria-hidden="true"></i> Camino Licán Ray a Coñaripe Km 8½, Panguipulli,
+                        Región de Los Ríos</p>
+                    <p><i class="bi bi-telephone" aria-hidden="true"></i> <a href="tel:+5491112345678">+54 9 11
+                            1234-5678</a></p>
+                    <p><i class="bi bi-envelope" aria-hidden="true"></i> <a
+                            href="mailto:info@relmu.com">info@relmu.com</a></p>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- Botón volver arriba -->
+    <button class="btn-arriba" id="btnArriba" type="button" aria-label="Volver arriba">
+        <i class="bi bi-arrow-up" aria-hidden="true"></i>
+    </button>
+
+    <!-- Botón flotante de reserva (visible en móvil) -->
+    <button class="btn-contacto-flotante" type="button" data-bs-toggle="modal" data-bs-target="#modalReserva">
+        <i class="bi bi-calendar-check" aria-hidden="true"></i> Reservar
+    </button>
+
+    <!-- ============================================================
+         MODAL DE RESERVA
+         ============================================================
+         Reúne los canales de contacto y un formulario que arma un
+         correo con los datos de la consulta (no envía nada por sí solo). -->
+    <div class="modal fade" id="modalReserva" tabindex="-1" aria-labelledby="tituloModalReserva" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <h2 class="modal-title" id="tituloModalReserva">Reserva tu estadía en Relmu</h2>
+                        <span class="modal-subtitulo">Sector Lluncura, Panguipulli · Región de Los Ríos</span>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+
+                <div class="modal-body">
+                    <p>
+                        Cuéntanos qué fechas tienes en mente y cuántas personas viajan. La reserva se confirma
+                        cancelando el <strong>30% del valor total</strong>.
+                    </p>
+
+                    <div class="opciones-contacto">
+                        <a class="opcion-contacto" href="tel:+5491112345678">
+                            <i class="bi bi-telephone-fill" aria-hidden="true"></i>
+                            <span><strong>Teléfono</strong><span>+54 9 11 1234-5678</span></span>
+                        </a>
+                        <a class="opcion-contacto" href="mailto:info@relmu.com">
+                            <i class="bi bi-envelope-fill" aria-hidden="true"></i>
+                            <span><strong>Correo</strong><span>info@relmu.com</span></span>
+                        </a>
+                        <a class="opcion-contacto" href="https://www.google.com/maps/dir/?api=1&destination=-39.511639,-72.083750"
+                            target="_blank" rel="noopener">
+                            <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+                            <span><strong>Ubicación</strong><span>Km 8½ Licán Ray – Coñaripe</span></span>
+                        </a>
+                    </div>
+
+                    <h5>O envíanos tu consulta</h5>
+
+                    <form class="form-consulta row g-3" id="formConsulta" novalidate>
+                        <div class="col-md-6">
+                            <label for="nombreConsulta">Nombre</label>
+                            <input type="text" class="form-control" id="nombreConsulta" name="nombre"
+                                placeholder="Tu nombre" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="fechasConsulta">Fechas de la estadía</label>
+                            <input type="text" class="form-control" id="fechasConsulta" name="fechas"
+                                placeholder="Ej: 12 al 16 de febrero" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="personasConsulta">Cantidad de personas</label>
+                            <input type="number" min="1" max="20" class="form-control" id="personasConsulta"
+                                name="personas" placeholder="Ej: 6">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="cabanaConsulta">Alojamiento de interés</label>
+                            <select class="form-select" id="cabanaConsulta" name="cabana">
+                                <option value="">Aún no lo sé</option>
+                                <option value="Cabaña Pequeña">Cabaña Pequeña (2 a 3 personas)</option>
+                                <option value="Cabaña Grande">Cabaña Grande (4 a 8 personas)</option>
+                                <option value="Casa Grande">Casa Grande (9 a 12 personas)</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="mensajeConsulta">Mensaje</label>
+                            <textarea class="form-control" id="mensajeConsulta" name="mensaje" rows="3"
+                                placeholder="Cuéntanos cualquier detalle adicional"></textarea>
+                        </div>
+
+                        <div class="col-12">
+                            <p class="nota-form mb-2">
+                                Al enviar se abrirá tu programa de correo con la consulta lista para enviar a
+                                info@relmu.com.
+                            </p>
+                            <button type="submit" class="boton-icono">
+                                Enviar consulta <i class="bi bi-send" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="aviso-consulta" id="avisoConsulta" role="status" aria-live="polite"></div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="boton-linea" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="boton-icono" data-bs-dismiss="modal" data-bs-toggle="modal"
+                        data-bs-target="#modalCabana" data-cabana="pequena">
+                        Ver detalles de las cabañas <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         MODAL DE DETALLE DE CABAÑA
+         ============================================================
+         El contenido se completa desde script.js según el botón
+         "Ver Detalles" que se haya presionado. -->
+    <div class="modal fade" id="modalCabana" tabindex="-1" aria-labelledby="tituloModalCabana" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <h2 class="modal-title" id="tituloModalCabana">Detalle del alojamiento</h2>
+                        <span class="modal-subtitulo" id="subtituloModalCabana"></span>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+
+                <div class="modal-body" id="cuerpoModalCabana">
+                    <!-- Contenido generado por script.js -->
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="boton-linea" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="boton-icono" data-bs-dismiss="modal" data-bs-toggle="modal"
+                        data-bs-target="#modalReserva">
+                        Reservar esta cabaña <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Bootstrap 5 JS bundle (incluye Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"

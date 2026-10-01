@@ -1,0 +1,116 @@
+@use 'variables';
+
+// ============================================================
+// ELEMENTOS FLOTANTES (barra de progreso y volver arriba)
+// ============================================================
+
+// ------ Barra de progreso de lectura ------
+// Muestra cuánto se ha avanzado en la página. El ancho lo actualiza
+// el JavaScript mediante la variable --progreso.
+.barra-progreso {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    width: 0;
+    z-index: 1080;
+    background: linear-gradient(90deg, #C08552, #8A4F33 55%, #5E3023);
+    box-shadow: 0 1px 10px rgba(192, 133, 82, 0.55);
+    transition: width 0.1s linear, opacity 0.3s ease;
+
+    // Veta de madera sutil sobre la barra
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: repeating-linear-gradient(90deg,
+                rgba(255, 255, 255, 0.10) 0 5px,
+                transparent 5px 13px);
+    }
+}
+
+// ------ Botón "volver arriba" ------
+.btn-arriba {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 1060;
+    width: 52px;
+    height: 52px;
+    padding: 0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: variables.$color-cafe-oscuro;
+    color: variables.$color-background;
+    border: 2px solid rgba(243, 233, 220, 0.4);
+    box-shadow: variables.$sombra-media;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(16px) scale(0.85);
+    transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s, background-color 0.25s ease;
+
+    i {
+        font-size: 1.35rem;
+        line-height: 1;
+    }
+
+    &:hover {
+        background-color: variables.$color-acento-cromatico;
+        color: variables.$color-background;
+        transform: translateY(-4px) scale(1.06);
+    }
+
+    &.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1);
+    }
+}
+
+// Botón flotante de contacto, visible sólo en móvil
+.btn-contacto-flotante {
+    position: fixed;
+    left: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 1060;
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7em 1.2em;
+    border-radius: 999px;
+    background-color: variables.$color-cafe-oscuro;
+    color: variables.$color-background;
+    border: 1px solid rgba(243, 233, 220, 0.35);
+    box-shadow: variables.$sombra-media;
+    font-family: "Playfair", serif;
+    font-size: variables.$tamano-p;
+    // Aparece recién al dejar atrás el hero (lo activa script.js)
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(16px);
+    transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s,
+        background-color 0.25s ease;
+
+    i {
+        color: variables.$color-acento-cromatico;
+    }
+
+    &:hover {
+        background-color: variables.$color-acento-cromatico;
+        color: variables.$color-background;
+    }
+
+    &.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 575px) {
+    .btn-contacto-flotante {
+        display: inline-flex;
+    }
+}

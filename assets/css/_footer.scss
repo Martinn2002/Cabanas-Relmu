@@ -4,14 +4,14 @@
 // ============================================================
 // FOOTER
 // ============================================================
-
 footer {
     position: relative;
     overflow: hidden;
     padding: 3rem 1rem 2rem;
     color: variables.$color-background;
 
-    h2, h5 {
+    h2,
+    h5 {
         color: variables.$color-background;
     }
 
@@ -29,44 +29,73 @@ footer {
             width: 40px;
             height: 2px;
             background-color: variables.$color-acento-cromatico;
+            transition: width 0.4s ease;
         }
     }
 
+    .col-md-4:hover h5::after {
+        width: 70px;
+    }
+
     &::before {
-        @include mixins.capa_textura("madera-oscura.jpg", 1);
+        @include mixins.capa_textura("madera-oscura.webp", 1);
     }
 
     &::after {
-        @include mixins.capa_color(variables.$color-cafe-oscuro, 0.80);
+        @include mixins.capa_color(variables.$color-cafe-oscuro, 0.82);
     }
 
-    > * {
+    >* {
         position: relative;
         z-index: 2;
+    }
+
+    .footer-logo {
+        margin-bottom: 0.75rem;
+        display: inline-block;
+        transition: transform 0.35s ease;
+
+        &:hover {
+            transform: translateY(-3px) scale(1.03);
+        }
+    }
+
+    p {
+        color: rgba(243, 233, 220, 0.88);
+        line-height: 1.7;
     }
 
     a {
         color: variables.$color-acento-cromatico;
         text-decoration: none;
-        transition: color 0.25s ease, padding-left 0.25s ease;
+        transition: color 0.25s ease, transform 0.25s ease;
+        display: inline-block;
+    }
 
-        &:hover {
-            color: variables.$color-background;
-            padding-left: 4px;
-        }
+    // Enlaces rápidos con desplazamiento lateral al pasar el mouse
+    ul.list-unstyled li a:hover {
+        color: variables.$color-background;
+        transform: translateX(5px);
     }
 
     .bi {
         color: variables.$color-acento-cromatico;
+        margin-right: 0.35rem;
     }
 
-    // Línea de separación superior
+    .footer-contacto p {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.35rem;
+        margin-bottom: 0.6rem;
+    }
+
+    // Línea de separación superior + copyright
     .container {
         position: relative;
 
-        // Copyright al fondo
         &::after {
-            content: "© 2026 Cabañas Relmu. Todos los derechos reservados.";
+            content: "© " attr(data-anio) " Cabañas Relmu. Todos los derechos reservados.";
             display: block;
             text-align: center;
             margin-top: 2rem;
@@ -74,7 +103,7 @@ footer {
             border-top: 1px solid rgba(243, 233, 220, 0.2);
             font-size: variables.$tamano-p-mediano;
             font-family: "DM Sans", sans-serif;
-            opacity: 0.7;
+            opacity: 0.75;
         }
     }
 }

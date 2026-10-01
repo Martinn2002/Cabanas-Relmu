@@ -4,7 +4,6 @@
 // ============================================================
 // CABAÑAS - Tarjetas, badges, tabla de tarifas
 // ============================================================
-
 .span-precio {
     color: variables.$color-cafe-oscuro;
     font-weight: 700;
@@ -13,8 +12,34 @@
 .cabana-img {
     position: relative;
     @include mixins.tarjeta_elevacion;
-    border-radius: 12px;
+    border-radius: variables.$radio-tarjeta;
     overflow: hidden;
+    background-color: variables.$color-crema-claro;
+
+    img {
+        aspect-ratio: 3 / 2;
+        object-fit: cover;
+        transition: transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    // Velo de color al pasar el mouse
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(30, 15, 11, 0) 45%, rgba(30, 15, 11, 0.4) 100%);
+        opacity: 0;
+        transition: opacity 0.35s ease;
+        pointer-events: none;
+    }
+
+    &:hover img {
+        transform: scale(1.07);
+    }
+
+    &:hover::after {
+        opacity: 1;
+    }
 
     .badge-capacidad {
         position: absolute;
@@ -26,14 +51,40 @@
         gap: 8px;
         padding: 8px 16px;
         border-radius: 6px;
-        background-color: variables.$color-cafe-oscuro;
+        background-color: rgba(94, 48, 35, 0.92);
         color: variables.$color-background;
         font-size: variables.$tamano-p-mediano;
         font-weight: 500;
+        transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.35s ease;
 
         i {
             font-size: variables.$tamano-p;
+            color: variables.$color-acento-cromatico;
         }
+    }
+
+    &:hover .badge-capacidad {
+        transform: translateY(-3px) scale(1.04);
+        background-color: variables.$color-acento-cromatico;
+    }
+}
+
+// Tarjeta de cabaña completa
+.tarjeta-cabana {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    h4 {
+        margin-top: 1.25rem;
+    }
+
+    .cabana-precio {
+        margin-bottom: 1rem;
+    }
+
+    .boton-icono {
+        align-self: center;
     }
 }
 
@@ -41,41 +92,120 @@
     font-size: variables.$tamano-p-mediano;
 }
 
+// Tarjeta con las condiciones de reserva
+.nota-tarifa {
+    height: 100%;
+    padding: 1.5rem;
+    border-radius: variables.$radio-tarjeta;
+    background-color: variables.$color-crema-claro;
+    @include mixins.marco_madera;
+    transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.35s ease;
+
+    &:hover {
+        transform: translateY(-6px);
+        box-shadow: variables.$sombra-media;
+    }
+
+    .nota-titulo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        font-size: variables.$tamano-h5;
+        color: variables.$color-cafe-oscuro;
+
+        i {
+            color: variables.$color-acento-cromatico;
+        }
+    }
+
+    p {
+        color: rgba(30, 15, 11, 0.78);
+        line-height: 1.7;
+
+        &:last-of-type {
+            margin-bottom: 1rem;
+        }
+    }
+}
+
 // Tabla de valores por noche
-table {
+.tabla-tarifas {
     text-align: center;
     border: 1px solid variables.$color-acento-cromatico !important;
+    border-radius: variables.$radio-tarjeta;
     overflow: hidden;
+    margin-bottom: 0;
+
+    th {
+        background-color: variables.$color-acento-cromatico !important;
+        font-family: "Playfair", serif;
+        color: variables.$color-background !important;
+        font-size: variables.$tamano-h6 !important;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        border: none !important;
+        padding-block: 0.9rem;
+    }
+
+    td {
+        background-color: variables.$color-crema-claro !important;
+        border-bottom: 1px solid rgba(192, 133, 82, 0.4) !important;
+        vertical-align: middle;
+        transition: background-color 0.25s ease, padding-left 0.25s ease;
+    }
+
+    tbody tr:last-child td {
+        border-bottom: none !important;
+    }
+
+    tbody tr:hover td {
+        background-color: rgba(192, 133, 82, 0.14) !important;
+    }
+
+    // La columna de precios se destaca en cobre y madera
+    tbody td:last-child {
+        font-weight: 700;
+        color: variables.$color-cafe-oscuro;
+    }
 }
 
-th {
-    background-color: variables.$color-acento-cromatico !important;
-    font-family: "Playfair", serif;
-    color: variables.$color-background !important;
-    font-size: variables.$tamano-h3 !important;
-}
-
-td {
-    background-color: variables.$color-background !important;
-    border-bottom: 1px solid variables.$color-acento-cromatico !important;
-    transition: background-color 0.2s ease;
-}
-
-tbody tr:hover td {
-    background-color: rgba(192, 133, 82, 0.1) !important;
-}
-
-// Fondo de la sección con textura
+// Las filas de la tabla entran una tras otra cuando la sección aparece
 .cabanas {
     position: relative;
     background-color: variables.$color-background;
 
     &::before {
-        @include mixins.capa_textura("madera-clara.jpg", 0.3);
+        @include mixins.capa_textura("madera-clara.webp", 0.28);
     }
 
-    > * {
+    >* {
         position: relative;
         z-index: 1;
+    }
+
+    .tabla-tarifas tbody tr {
+        opacity: 0;
+        transform: translateY(14px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    &.visible .tabla-tarifas tbody tr {
+        opacity: 1;
+        transform: none;
+    }
+
+    @for $i from 1 through 6 {
+        &.visible .tabla-tarifas tbody tr:nth-child(#{$i}) {
+            transition-delay: #{0.15 + $i * 0.09}s;
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cabanas .tabla-tarifas tbody tr {
+        opacity: 1;
+        transform: none;
+        transition: none;
     }
 }

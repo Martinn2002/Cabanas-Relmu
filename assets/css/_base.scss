@@ -2,32 +2,242 @@
 @use 'mixins';
 
 // ============================================================
-// BASE - Reset ligero y estilos globales
+// BASE - Reset ligero, estilos globales y utilidades
 // ============================================================
 
 // Scroll suave al hacer clic en enlaces ancla
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 80px; // compensa el navbar fijo
+    scroll-padding-top: 90px; // compensa el navbar fijo
 }
 
 body {
     background-color: variables.$color-background;
+    color: variables.$color-oscuro;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden; // evita scroll lateral por las animaciones
 }
 
 button {
     @include mixins.boton_diseno;
+
+    &:focus-visible {
+        @include mixins.foco_visible;
+    }
+}
+
+a:focus-visible {
+    @include mixins.foco_visible;
+}
+
+// Enlace para saltar al contenido (visible sólo con teclado)
+.skip-enlace {
+    position: absolute;
+    left: 1rem;
+    top: -4rem;
+    z-index: 2000;
+    padding: 0.6rem 1.1rem;
+    border-radius: 0 0 variables.$radio-boton variables.$radio-boton;
+    background-color: variables.$color-cafe-oscuro;
+    color: variables.$color-background;
+    font-family: "DM Sans", sans-serif;
+    font-size: variables.$tamano-p;
+    text-decoration: none;
+    transition: top 0.25s ease;
+
+    &:focus {
+        top: 0;
+        color: variables.$color-background;
+    }
+}
+
+::selection {
+    background-color: rgba(192, 133, 82, 0.35);
 }
 
 .bg-body-tertiary {
     background-color: variables.$color-background !important;
 }
 
-// Clases de animación reveal (controladas por IntersectionObserver)
+// ============================================================
+// VARIANTES DE BOTÓN
+// ============================================================
+
+// Botón principal cuando es un enlace (<a>) en lugar de <button>
+.boton-primario {
+    @include mixins.boton_diseno;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+// Botón de contorno cobre (acción secundaria sobre fondos claros)
+.boton-linea {
+    background-color: transparent;
+    color: variables.$color-cafe-oscuro;
+    border: 1px solid variables.$color-acento-cromatico;
+
+    &:hover {
+        background-color: variables.$color-cafe-oscuro;
+        color: variables.$color-background;
+        border-color: variables.$color-cafe-oscuro;
+    }
+}
+
+// Botón sobre fondos oscuros (contorno crema)
+.boton-crema {
+    background-color: transparent;
+    color: variables.$color-background;
+    border: 1px solid rgba(243, 233, 220, 0.65);
+
+    &:hover {
+        background-color: rgba(243, 233, 220, 0.14);
+        color: variables.$color-background;
+        border-color: variables.$color-background;
+    }
+}
+
+// Botón con ícono que se desliza al pasar el mouse
+.boton-icono {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    i {
+        transition: transform 0.3s ease;
+    }
+
+    &:hover i {
+        transform: translateX(4px);
+    }
+}
+
+.boton-chico {
+    padding: 0.45em 1.1em;
+    font-size: variables.$tamano-p-mediano;
+}
+
+// ============================================================
+// ANIMACIONES REVEAL (controladas por IntersectionObserver)
+// ============================================================
 .reveal {
     @include mixins.reveal-init;
 }
 
 .reveal.visible {
     @include mixins.reveal-visible;
+}
+
+// Variantes de entrada: desde la izquierda, derecha y con zoom
+.reveal-izq,
+.reveal-der,
+.reveal-zoom {
+    transition: opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+        transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0s);
+    will-change: opacity, transform;
+}
+
+.reveal-izq {
+    opacity: 0;
+    transform: translateX(-45px);
+}
+
+.reveal-der {
+    opacity: 0;
+    transform: translateX(45px);
+}
+
+.reveal-zoom {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+.reveal-izq.visible,
+.reveal-der.visible,
+.reveal-zoom.visible {
+    opacity: 1;
+    transform: none;
+}
+
+// ============================================================
+// TÍTULOS DE SECCIÓN
+// ============================================================
+// Estructura: rótulo + h2 + bajada + divisor decorativo animado.
+.titulo-seccion {
+    text-align: center;
+    margin-bottom: 2.5rem;
+
+    .etiqueta {
+        @include mixins.etiqueta_seccion;
+    }
+
+    h2 {
+        margin-bottom: 0.75rem;
+    }
+
+    // Bajada: cambia el h3 a un subtítulo legible en sans-serif
+    h3 {
+        font-family: "DM Sans", sans-serif;
+        font-size: clamp(0.95rem, 0.5vw + 0.8rem, 1.1rem);
+        font-weight: 400;
+        line-height: 1.7;
+        color: rgba(30, 15, 11, 0.72);
+        max-width: 46rem;
+        margin: 0 auto;
+    }
+}
+
+// Divisor con rombo central que aparece al entrar en pantalla
+.divisor {
+    position: relative;
+    display: block;
+    width: 140px;
+    height: 2px;
+    margin: 1.5rem auto 0;
+    background: linear-gradient(90deg, transparent, rgba(192, 133, 82, 0.85), transparent);
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 10px;
+        height: 10px;
+        background-color: variables.$color-acento-cromatico;
+        border: 2px solid variables.$color-background;
+        transform: translate(-50%, -50%) rotate(45deg) scale(0);
+        transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.35s;
+    }
+}
+
+.visible .divisor::after {
+    transform: translate(-50%, -50%) rotate(45deg) scale(1);
+}
+
+// ============================================================
+// UTILIDADES
+// ============================================================
+.texto-cobre {
+    color: variables.$color-acento-cromatico;
+}
+
+.seccion-padding {
+    padding: clamp(3rem, 6vw, 5.5rem) 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .reveal-izq,
+    .reveal-der,
+    .reveal-zoom {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    .divisor::after {
+        transform: translate(-50%, -50%) rotate(45deg) scale(1);
+    }
 }

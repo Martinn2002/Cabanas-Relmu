@@ -4,12 +4,40 @@
 // ============================================================
 // CARACTERÍSTICAS - Tarjetas con ícono circular
 // ============================================================
-
 .imagen-tarjeta {
+    position: relative;
     @include mixins.tarjeta_elevacion;
-    border-radius: 12px;
+    border-radius: variables.$radio-tarjeta;
     overflow: hidden;
+    background-color: variables.$color-crema-claro;
 
+    // Foto de la comodidad: hace zoom suave al pasar el mouse
+    >img {
+        aspect-ratio: 3 / 2;
+        object-fit: cover;
+        transition: transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    // Velo cálido que aparece en hover para dar profundidad
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(30, 15, 11, 0) 45%, rgba(30, 15, 11, 0.35) 100%);
+        opacity: 0;
+        transition: opacity 0.35s ease;
+        pointer-events: none;
+    }
+
+    &:hover>img {
+        transform: scale(1.08);
+    }
+
+    &:hover::after {
+        opacity: 1;
+    }
+
+    // Ícono circular que sobresale de la tarjeta
     .icono-circular {
         position: absolute;
         bottom: 28px;
@@ -23,23 +51,34 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: transform 0.3s ease, background-color 0.3s ease;
+        box-shadow: variables.$sombra-suave;
+        transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.35s ease;
+        z-index: 2;
 
         img {
             width: 55%;
             height: 55%;
             object-fit: contain;
             filter: brightness(0) invert(1);
+            transition: transform 0.35s ease;
         }
     }
 
     &:hover .icono-circular {
-        transform: translate(-50%, 50%) scale(1.15);
+        transform: translate(-50%, 50%) scale(1.16);
         background-color: variables.$color-acento-cromatico;
+
+        img {
+            transform: rotate(-8deg);
+        }
     }
 }
 
 // Contenedor de la tarjeta con padding superior para el ícono
 .caracteristicas .col-md-3 {
     padding-top: 1.5rem; // espacio para el ícono circular que sobresale
+
+    h4 {
+        margin-top: 1.6rem;
+    }
 }
